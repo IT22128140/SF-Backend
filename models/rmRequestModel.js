@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const rmRequestSchema = mongoose.Schema(
     {
+        RequestID: {
+            type: String,
+            required: true,
+        },
         Date: {
             type: Date,
             required: true,
@@ -21,6 +25,10 @@ const rmRequestSchema = mongoose.Schema(
         Other_Materials:{
             type: String,
             required: true,
+        },
+        Status:{
+            type: String,
+            required:true
         },
     },
     {

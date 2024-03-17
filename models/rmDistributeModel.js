@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const rmDistributeSchema = mongoose.Schema(
     {
+        DistributeID : {
+            type : String,
+            required : true,
+        },
         Date: {
             type: Date,
             required: true,

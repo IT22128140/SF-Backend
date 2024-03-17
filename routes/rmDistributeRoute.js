@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/', async (request,response) => {
     try{
       if(   //validations to confirm all the required fields are filled
+        !request.body.DistributeID ||
         !request.body.Date||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
@@ -18,6 +19,7 @@ router.post('/', async (request,response) => {
         });
       }
       const newrmDistribute = {
+        DistributeID : request.body.DistributeID,
         Date : request.body.Date,
         LineNumber : request.body.LineNumber,
         PositionNumber : request.body.PositionNumber,
@@ -70,6 +72,7 @@ router.get('/:id',async(request,response) => {
 router.put('/:id', async (request, response) =>{
     try{
       if(
+        !request.body.DistributeID ||
         !request.body.Date||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
