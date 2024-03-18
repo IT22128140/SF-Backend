@@ -1,28 +1,23 @@
 import mongoose from "mongoose";
 
-const machinesSchema = mongoose.Schema(
+const mprShortagesSchema = mongoose.Schema(
     {
-        MachineID: {
+        RequestID: {
             type: String,
             required: true,
         },
 
-        MachineName: {
+        PartID: {
+            type: String,
+            required: true,
+        },
+
+        PartName: {
             type: String,
             required: true,
         },
     
-        PurchasedDate: {
-            type: Date,
-            required: true,
-        },
-    
-        Condition: {
-            type: String,
-            required: true,
-        },
-    
-        Cost: {
+        Description: {
             type: String,
             required: true,
         },
@@ -32,13 +27,13 @@ const machinesSchema = mongoose.Schema(
             required: true,
         },
     
-        Manufacturer: {
+        Condition: {
          type: String,
          required: true,
         },
 
-        Category: {
-            type: String,
+        NeededBeforeDate: {
+            type: Date,
             required: true,
         },
     
@@ -48,4 +43,4 @@ const machinesSchema = mongoose.Schema(
     }
     );
 
-export const Machine = mongoose.model('Machine', machinesSchema);
+export const PartShortage = mongoose.model('PartShortage', mprShortagesSchema);

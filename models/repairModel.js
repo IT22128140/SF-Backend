@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const repairsSchema = mongoose.Schema(
     {
+        RepairID: {
+            type: String,
+            required: true,
+        },
+        
         RepairDescription: {
             type: String,
             required: true,
