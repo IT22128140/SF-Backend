@@ -5,6 +5,8 @@ import { rmRequest } from "./models/rmRequestModel.js";
 import rmRequestRoute from './routes/rmRequestRoute.js';
 import { rmDistribute } from "./models/rmDistributeModel.js";
 import rmDistributeRoute from './routes/rmDistributeRoute.js';
+import { empPerformance } from "./models/empPerformanceModel.js";
+import empPerformanceRoute from './routes/empPerformanceRoute.js';
 import cors from 'cors';
 
 
@@ -32,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.use('/rmRequests', rmRequestRoute);
 app.use('/rmDistributes', rmDistributeRoute);
+app.use('/empPerformances', empPerformanceRoute);
 
 mongoose
   .connect(MONGO_URI)
