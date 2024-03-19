@@ -95,7 +95,7 @@ router.put('/:id', async (request, response) => {
       const { id } = request.params;                                               
       const MPDlt = await MP.findByIdAndDelete(id);                                  
       if (!MPDlt) {
-        return response.status(404).json({ message: 'MP not found' });            // Sending a 404 response if the supplier is not found
+        return response.status(404).json({ message: 'MP not found' });            
       }
       return response.status(200).send({ message: "MP removed successfully" });   // Sending a success response
     } catch (error) {
