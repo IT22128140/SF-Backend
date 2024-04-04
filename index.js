@@ -4,14 +4,14 @@ import mongoose from "mongoose";
 import cors from "cors";
 //enter your imports under your name. don't add or delete empty spaces
 //Sageevan
-import { ProductRequest } from "./models/productRequestModel.js"; //sageevanModel 1/4
-import { ProductReview } from "./models/productReviewModel.js"; //sageevanModel 2/4
-import { RejectedProduct } from "./models/rejectedProductModel.js"; //sageevanModel 3/4
-import { ReleaseProduct } from "./models/releaseProductModel.js"; //sageevanModel 4/4
 import productRequestRoute from "./routes/productRequestRoute.js";//sageevanRoute 1/4
 import productReviewRoute from "./routes/productReviewRoute.js";//sageevanRoute 2/4
 import rejectedProductRoute from "./routes/rejectedProductRoute.js";//sageevanRoute 3/4
 import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRoute 4/4
+
+
+
+
 
 
 //Varagan
