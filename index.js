@@ -1,4 +1,4 @@
-import express, { request, response } from "express";
+import express from "express";
 import { PORT, MONGO_URI } from "./config.js";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -26,9 +26,9 @@ import cors from "cors";
 
 
 //Hiranya
-
-
-
+import repairsRoute from './routes/repairsRoute.js';
+import machinesRoute from './routes/machinesRoute.js';
+import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 
@@ -82,8 +82,8 @@ import cors from "cors";
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import deliveryRoute from "./routes/deliveryDetailsRoute.js";
-
-
+import mongoose from "mongoose";
+import cors from "cors";
 
 
 
@@ -124,9 +124,9 @@ app.get("/", (req, res) => {
 
 
 //Hiranya
-
-
-
+app.use('/repairs', repairsRoute);
+app.use('/machines', machinesRoute);
+app.use('/mpshortages', mprShortagesRoute);
 
 
 
