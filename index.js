@@ -5,20 +5,13 @@ import employeeRoute from "./routes/employeeRoute.js";
 import attendanceRoute from "./routes/attendanceRoute.js";
 import occupationRoute from "./routes/occupationRoute.js";
 import cors from "cors";
+import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
+import RMStockRoutes from "./routes/RMStockRoutes.js";
+import MachinePartRoutes from "./routes/MachinePartRoutes.js";
 
 const app = express();
-
 app.use(express.json());
-
 app.use(cors());
-// app.use(
-//   cors({
-//     origin: "http://localhost:5555",
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type"],
-//   })
-// );
-
 app.get("/", (req, res) => {
   console.log(req);
   return res.status(234).send("Connection Successful!");
@@ -27,6 +20,9 @@ app.get("/", (req, res) => {
 app.use("/employee", employeeRoute);
 app.use("/attendance", attendanceRoute);
 app.use("/occupation", occupationRoute);
+app.use('/supdetails', SupplierDetailsroutes);
+app.use('/RMstock', RMStockRoutes);
+app.use('/mpstock', MachinePartRoutes);
 
 mongoose
   .connect(MONGO_URI)
@@ -37,5 +33,5 @@ mongoose
     });
   })
   .catch((error) => {
-    console.log("MongoDB Connection Error: ", error);
+    console.log("MongoDB Connection Error: ", error);                                    // Logging MongoDB connection error
   });
