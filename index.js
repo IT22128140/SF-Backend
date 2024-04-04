@@ -1,46 +1,193 @@
-import express, { request } from "express";                        // Importing express
-import mongoose from "mongoose";                     // Importing mongoose for MongoDB interaction
-import { PORT, MONGO_URI } from "./config.js";      // Importing PORT and MONGO_URI from configuration
-import { Sup } from "./models/SupplierDetails.js"; // Importing SupplierDetails model
-import { RM } from "./models/RMStock.js";
-import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
-import RMStockRoutes from "./routes/RMStockRoutes.js";
-import MachinePartRoutes from "./routes/MachinePartRoutes.js";
+import express from "express";
+import { PORT, MONGO_URI } from "./config.js";
+import mongoose from "mongoose";
+import cors from "cors";
+//enter your imports under your name. don't add or delete empty spaces
+//Sageevan
+import { ProductRequest } from "./models/productRequestModel.js"; //sageevanModel 1/4
+import { ProductReview } from "./models/productReviewModel.js"; //sageevanModel 2/4
+import { RejectedProduct } from "./models/rejectedProductModel.js"; //sageevanModel 3/4
+import { ReleaseProduct } from "./models/releaseProductModel.js"; //sageevanModel 4/4
+import productRequestRoute from "./routes/productRequestRoute.js";//sageevanRoute 1/4
+import productReviewRoute from "./routes/productReviewRoute.js";//sageevanRoute 2/4
+import rejectedProductRoute from "./routes/rejectedProductRoute.js";//sageevanRoute 3/4
+import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRoute 4/4
 
-const app = express();                             // Creating an Express application instance
 
-app.use(express.json());                           // Middleware to parse JSON bodies of incoming requests
+//Varagan
 
-// Route handler for the root URL
+
+
+
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
+//Maneth
+
+
+
+
+
+
+
+
+
+
+
+//connection
+const app = express();
+app.use(express.json());
+app.use(cors());
 app.get("/", (req, res) => {
-  console.log(req);                                 // Logging the request object
-  return res.status(234).send("Welcome To MERN Stack Tutorial");         // Sending a response
+  console.log(req);
+  return res.status(234).send("Connection Successful!");
 });
 
+//enter your routes under your name. don't add or delete empty spaces
+//Varagan
 
 
-app.get('/RMstock/search/:key', async (req, res) => {
-  console.log(req.params.key);
-  try {
-    let data = await products.find({
-      "$or": [
-        { materialType: { $regex: req.params.key },
-            colorAndDesign: { $regex: req.params.key } }
-      ]
-    });
-    res.send(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
 
 
-app.use('/supdetails', SupplierDetailsroutes);
-app.use('/RMstock', RMStockRoutes);
-app.use('/mpstock', MachinePartRoutes);
 
-// Connecting to MongoDB and starting the server
+
+
+
+
+
+//Sageevan
+app.use('/qualityControl/productRequest',productRequestRoute);
+app.use('/qualityControl/productReview',productReviewRoute);
+app.use('/qualityControl/releaseProduct',releaseProductRoute);
+app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//Sandithi
+
+
+
+
+
+
+
+
+
+//Maneth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 mongoose
   .connect(MONGO_URI)
   .then(() => {
