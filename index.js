@@ -69,9 +69,9 @@ import cors from "cors";
 
 
 //Sandithi
-
-
-
+import employeeRoute from "./routes/employeeRoute.js";
+import attendanceRoute from "./routes/attendanceRoute.js";
+import occupationRoute from "./routes/occupationRoute.js";
 
 
 
@@ -166,9 +166,9 @@ app.get("/", (req, res) => {
 
 
 //Sandithi
-
-
-
+app.use("/employee", employeeRoute);
+app.use("/attendance", attendanceRoute);
+app.use("/occupation", occupationRoute);
 
 
 
