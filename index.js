@@ -57,6 +57,7 @@ import cors from "cors";
 
 
 
+
 //Gihan
 
 
@@ -67,11 +68,7 @@ import cors from "cors";
 
 
 
-//Sandithi
-import employeeRoute from "./routes/employeeRoute.js";
-import attendanceRoute from "./routes/attendanceRoute.js";
-import occupationRoute from "./routes/occupationRoute.js";
-import cors from "cors";
+//
 
 
 
@@ -79,6 +76,22 @@ import cors from "cors";
 
 
 
+
+
+//Maneth
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import deliveryRoute from "./routes/deliveryDetailsRoute.js";
+
+
+
+
+
+
+
+
+
+//connection
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -153,9 +166,30 @@ app.get("/", (req, res) => {
 
 
 //Sandithi
-app.use("/employee", employeeRoute);
-app.use("/attendance", attendanceRoute);
-app.use("/occupation", occupationRoute);
+
+
+
+
+
+
+
+
+
+//Maneth
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
+app.use("/deliveryDetails", deliveryRoute);
+
+
+
+
+
+
+
+
+
+
+
 
 mongoose
   .connect(MONGO_URI)
