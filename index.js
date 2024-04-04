@@ -4,10 +4,10 @@ import mongoose from "mongoose";
 import cors from "cors";
 //enter your imports under your name. don't add or delete empty spaces
 //Sageevan
-
-
-
-
+import productRequestRoute from "./routes/productRequestRoute.js";//sageevanRoute 1/4
+import productReviewRoute from "./routes/productReviewRoute.js";//sageevanRoute 2/4
+import rejectedProductRoute from "./routes/rejectedProductRoute.js";//sageevanRoute 3/4
+import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRoute 4/4
 
 
 
@@ -26,9 +26,9 @@ import cors from "cors";
 
 
 //Hiranya
-
-
-
+import repairsRoute from './routes/repairsRoute.js';
+import machinesRoute from './routes/machinesRoute.js';
+import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 
@@ -36,17 +36,18 @@ import cors from "cors";
 
 
 //Ridmi
-import { rmRequest } from "./models/rmRequestModel.js";
-import rmRequestRoute from './routes/rmRequestRoute.js';
-import { rmDistribute } from "./models/rmDistributeModel.js";
-import rmDistributeRoute from './routes/rmDistributeRoute.js';
-import { empPerformance } from "./models/empPerformanceModel.js";
-import empPerformanceRoute from './routes/empPerformanceRoute.js';
+
+
+
+
+
+
 
 
 
 
 //Isuru
+
 
 
 
@@ -67,7 +68,7 @@ import empPerformanceRoute from './routes/empPerformanceRoute.js';
 
 
 
-//
+//Sandithi
 
 
 
@@ -78,8 +79,9 @@ import empPerformanceRoute from './routes/empPerformanceRoute.js';
 
 
 //Maneth
-
-
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import deliveryRoute from "./routes/deliveryDetailsRoute.js";
 
 
 
@@ -111,10 +113,10 @@ app.get("/", (req, res) => {
 
 
 //Sageevan
-
-
-
-
+app.use('/qualityControl/productRequest',productRequestRoute);
+app.use('/qualityControl/productReview',productReviewRoute);
+app.use('/qualityControl/releaseProduct',releaseProductRoute);
+app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
 
 
 
@@ -122,9 +124,9 @@ app.get("/", (req, res) => {
 
 
 //Hiranya
-
-
-
+app.use('/repairs', repairsRoute);
+app.use('/machines', machinesRoute);
+app.use('/mpshortages', mprShortagesRoute);
 
 
 
@@ -132,9 +134,9 @@ app.get("/", (req, res) => {
 
 
 //Ridmi
-app.use('/rmRequests', rmRequestRoute);
-app.use('/rmDistributes', rmDistributeRoute);
-app.use('/empPerformances', empPerformanceRoute);
+
+
+
 
 
 
@@ -174,8 +176,9 @@ app.use('/empPerformances', empPerformanceRoute);
 
 
 //Maneth
-
-
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
+app.use("/deliveryDetails", deliveryRoute);
 
 
 
