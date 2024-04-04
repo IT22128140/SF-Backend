@@ -36,9 +36,9 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 //Ridmi
-
-
-
+import rmRequestRoute from './routes/rmRequestRoute.js';
+import rmDistributeRoute from './routes/rmDistributeRoute.js';
+import empPerformanceRoute from './routes/empPerformanceRoute.js';
 
 
 
@@ -134,9 +134,9 @@ app.use('/mpshortages', mprShortagesRoute);
 
 
 //Ridmi
-
-
-
+app.use('/rmRequests', rmRequestRoute);
+app.use('/rmDistributes', rmDistributeRoute);
+app.use('/empPerformances', empPerformanceRoute);
 
 
 
