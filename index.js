@@ -57,6 +57,7 @@ import cors from "cors";
 
 
 
+
 //Gihan
 
 
@@ -78,8 +79,9 @@ import cors from "cors";
 
 
 //Maneth
-
-
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import deliveryRoute from "./routes/deliveryDetailsRoute.js";
 
 
 
@@ -174,8 +176,9 @@ app.get("/", (req, res) => {
 
 
 //Maneth
-
-
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
+app.use("/deliveryDetails", deliveryRoute);
 
 
 
