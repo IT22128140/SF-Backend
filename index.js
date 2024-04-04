@@ -26,9 +26,9 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 //Hiranya
-
-
-
+import repairsRoute from './routes/repairsRoute.js';
+import machinesRoute from './routes/machinesRoute.js';
+import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 
@@ -57,6 +57,7 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 
+
 //Gihan
 
 
@@ -67,7 +68,7 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 
-//
+//Sandithi
 
 
 
@@ -78,8 +79,9 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 //Maneth
-
-
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import deliveryRoute from "./routes/deliveryDetailsRoute.js";
 
 
 
@@ -122,9 +124,9 @@ app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
 
 
 //Hiranya
-
-
-
+app.use('/repairs', repairsRoute);
+app.use('/machines', machinesRoute);
+app.use('/mpshortages', mprShortagesRoute);
 
 
 
@@ -174,8 +176,9 @@ app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
 
 
 //Maneth
-
-
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
+app.use("/deliveryDetails", deliveryRoute);
 
 
 
