@@ -1,40 +1,195 @@
 import express from "express";
 import { PORT, MONGO_URI } from "./config.js";
 import mongoose from "mongoose";
-import { rmRequest } from "./models/rmRequestModel.js";
-import rmRequestRoute from './routes/rmRequestRoute.js';
-import { rmDistribute } from "./models/rmDistributeModel.js";
-import rmDistributeRoute from './routes/rmDistributeRoute.js';
-import { empPerformance } from "./models/empPerformanceModel.js";
-import empPerformanceRoute from './routes/empPerformanceRoute.js';
-import cors from 'cors';
+import cors from "cors";
+//enter your imports under your name. don't add or delete empty spaces
+//Sageevan
+import productRequestRoute from "./routes/productRequestRoute.js";//sageevanRoute 1/4
+import productReviewRoute from "./routes/productReviewRoute.js";//sageevanRoute 2/4
+import rejectedProductRoute from "./routes/rejectedProductRoute.js";//sageevanRoute 3/4
+import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRoute 4/4
 
 
+
+
+
+
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Hiranya
+import repairsRoute from './routes/repairsRoute.js';
+import machinesRoute from './routes/machinesRoute.js';
+import mprShortagesRoute from './routes/mprShortagesRoute.js';
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//Sandithi
+
+
+
+
+
+
+
+
+
+//Maneth
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import deliveryRoute from "./routes/deliveryDetailsRoute.js";
+
+
+
+
+
+
+
+
+
+//connection
 const app = express();
-
-//Middleware for parsing request body
 app.use(express.json());
-
-//Middleware for handling CORS POLICY
-//Option1 : Allow all origins with default of cors(*)
-// app.use(cors());
-//Option2 : Allow csutom origins
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-  })
-);
-
+app.use(cors());
 app.get("/", (req, res) => {
   console.log(req);
-  return res.status(234).send("Welcome To MERN Stack Tutorial");
+  return res.status(234).send("Connection Successful!");
 });
 
-app.use('/rmRequests', rmRequestRoute);
-app.use('/rmDistributes', rmDistributeRoute);
-app.use('/empPerformances', empPerformanceRoute);
+//enter your routes under your name. don't add or delete empty spaces
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Sageevan
+app.use('/qualityControl/productRequest',productRequestRoute);
+app.use('/qualityControl/productReview',productReviewRoute);
+app.use('/qualityControl/releaseProduct',releaseProductRoute);
+app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
+
+
+
+
+
+
+//Hiranya
+app.use('/repairs', repairsRoute);
+app.use('/machines', machinesRoute);
+app.use('/mpshortages', mprShortagesRoute);
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//Sandithi
+
+
+
+
+
+
+
+
+
+//Maneth
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
+app.use("/deliveryDetails", deliveryRoute);
+
+
+
+
+
+
+
+
+
+
+
 
 mongoose
   .connect(MONGO_URI)
@@ -45,5 +200,5 @@ mongoose
     });
   })
   .catch((error) => {
-    console.log("MongoDB Connection Error: ", error);
+    console.log("MongoDB Connection Error: ", error);                                    // Logging MongoDB connection error
   });
