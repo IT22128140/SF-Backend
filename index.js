@@ -1,14 +1,97 @@
 import express from "express";
 import { PORT, MONGO_URI } from "./config.js";
 import mongoose from "mongoose";
-import employeeRoute from "./routes/employeeRoute.js";
-import attendanceRoute from "./routes/attendanceRoute.js";
-import occupationRoute from "./routes/occupationRoute.js";
 import cors from "cors";
-import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
-import RMStockRoutes from "./routes/RMStockRoutes.js";
-import MachinePartRoutes from "./routes/MachinePartRoutes.js";
+//enter your imports under your name. don't add or delete empty spaces
+//Sageevan
 
+
+
+
+
+
+
+
+
+
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
+//Maneth
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import deliveryRoute from "./routes/deliveryDetailsRoute.js";
+
+
+
+
+
+
+
+
+
+//connection
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -17,12 +100,96 @@ app.get("/", (req, res) => {
   return res.status(234).send("Connection Successful!");
 });
 
-app.use("/employee", employeeRoute);
-app.use("/attendance", attendanceRoute);
-app.use("/occupation", occupationRoute);
-app.use('/supdetails', SupplierDetailsroutes);
-app.use('/RMstock', RMStockRoutes);
-app.use('/mpstock', MachinePartRoutes);
+//enter your routes under your name. don't add or delete empty spaces
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Sageevan
+
+
+
+
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//Sandithi
+
+
+
+
+
+
+
+
+
+//Maneth
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
+app.use("/deliveryDetails", deliveryRoute);
+
+
+
+
+
+
+
+
+
+
+
 
 mongoose
   .connect(MONGO_URI)
