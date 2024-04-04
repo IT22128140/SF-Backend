@@ -1,25 +1,195 @@
 import express, { request, response } from "express";
 import { PORT, MONGO_URI } from "./config.js";
-import mongoose, { pluralize } from "mongoose";
-import { Repair } from "./models/repairModel.js";
-import repairsRoute from './routes/repairsRoute.js';
-import { Machine } from "./models/machinesModes.js";
-import machinesRoute from './routes/machinesRoute.js';
-import mprShortagesRoute from './routes/mprShortagesRoute.js';
+import mongoose from "mongoose";
+import cors from "cors";
+//enter your imports under your name. don't add or delete empty spaces
+//Sageevan
 
+
+
+
+
+
+
+
+
+
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//Sandithi
+
+
+
+
+
+
+
+
+
+//Maneth
+import itemsRoute from "./routes/itemsRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import deliveryRoute from "./routes/deliveryDetailsRoute.js";
+
+
+
+
+
+
+
+
+
+//connection
 const app = express();
-
-//Middleware for parsing request body
 app.use(express.json());
-
+app.use(cors());
 app.get("/", (req, res) => {
   console.log(req);
-  return res.status(234).send("Welcome To MERN Stack Tutorial");
+  return res.status(234).send("Connection Successful!");
 });
 
-app.use('/repairs', repairsRoute);
-app.use('/machines', machinesRoute);
-app.use('/mpshortages', mprShortagesRoute);
+//enter your routes under your name. don't add or delete empty spaces
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Sageevan
+
+
+
+
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
+
+
+
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//Sandithi
+
+
+
+
+
+
+
+
+
+//Maneth
+app.use("/items", itemsRoute);
+app.use("/cart", cartRoute);
+app.use("/deliveryDetails", deliveryRoute);
+
+
+
+
+
+
+
+
+
+
+
 
 mongoose
   .connect(MONGO_URI)
@@ -30,5 +200,5 @@ mongoose
     });
   })
   .catch((error) => {
-    console.log("MongoDB Connection Error: ", error);
+    console.log("MongoDB Connection Error: ", error);                                    // Logging MongoDB connection error
   });
