@@ -1,46 +1,29 @@
-import express, { request } from "express";                        // Importing express
-import mongoose from "mongoose";                     // Importing mongoose for MongoDB interaction
-import { PORT, MONGO_URI } from "./config.js";      // Importing PORT and MONGO_URI from configuration
-import { Sup } from "./models/SupplierDetails.js"; // Importing SupplierDetails model
-import { RM } from "./models/RMStock.js";
+import express from "express";
+import { PORT, MONGO_URI } from "./config.js";
+import mongoose from "mongoose";
+import employeeRoute from "./routes/employeeRoute.js";
+import attendanceRoute from "./routes/attendanceRoute.js";
+import occupationRoute from "./routes/occupationRoute.js";
+import cors from "cors";
 import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
 import RMStockRoutes from "./routes/RMStockRoutes.js";
 import MachinePartRoutes from "./routes/MachinePartRoutes.js";
 
-const app = express();                             // Creating an Express application instance
-
-app.use(express.json());                           // Middleware to parse JSON bodies of incoming requests
-
-// Route handler for the root URL
+const app = express();
+app.use(express.json());
+app.use(cors());
 app.get("/", (req, res) => {
-  console.log(req);                                 // Logging the request object
-  return res.status(234).send("Welcome To MERN Stack Tutorial");         // Sending a response
+  console.log(req);
+  return res.status(234).send("Connection Successful!");
 });
 
-
-
-app.get('/RMstock/search/:key', async (req, res) => {
-  console.log(req.params.key);
-  try {
-    let data = await products.find({
-      "$or": [
-        { materialType: { $regex: req.params.key },
-            colorAndDesign: { $regex: req.params.key } }
-      ]
-    });
-    res.send(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-
+app.use("/employee", employeeRoute);
+app.use("/attendance", attendanceRoute);
+app.use("/occupation", occupationRoute);
 app.use('/supdetails', SupplierDetailsroutes);
 app.use('/RMstock', RMStockRoutes);
 app.use('/mpstock', MachinePartRoutes);
 
-// Connecting to MongoDB and starting the server
 mongoose
   .connect(MONGO_URI)
   .then(() => {
