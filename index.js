@@ -1,40 +1,192 @@
 import express from "express";
 import { PORT, MONGO_URI } from "./config.js";
 import mongoose from "mongoose";
+import cors from "cors";
+//enter your imports under your name. don't add or delete empty spaces
+//Sageevan
+
+
+
+
+
+
+
+
+
+
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
 import { rmRequest } from "./models/rmRequestModel.js";
 import rmRequestRoute from './routes/rmRequestRoute.js';
 import { rmDistribute } from "./models/rmDistributeModel.js";
 import rmDistributeRoute from './routes/rmDistributeRoute.js';
 import { empPerformance } from "./models/empPerformanceModel.js";
 import empPerformanceRoute from './routes/empPerformanceRoute.js';
-import cors from 'cors';
 
 
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
+//Maneth
+
+
+
+
+
+
+
+
+
+
+
+//connection
 const app = express();
-
-//Middleware for parsing request body
 app.use(express.json());
-
-//Middleware for handling CORS POLICY
-//Option1 : Allow all origins with default of cors(*)
-// app.use(cors());
-//Option2 : Allow csutom origins
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-  })
-);
-
+app.use(cors());
 app.get("/", (req, res) => {
   console.log(req);
-  return res.status(234).send("Welcome To MERN Stack Tutorial");
+  return res.status(234).send("Connection Successful!");
 });
 
+//enter your routes under your name. don't add or delete empty spaces
+//Varagan
+
+
+
+
+
+
+
+
+
+
+//Sageevan
+
+
+
+
+
+
+
+
+
+
+//Hiranya
+
+
+
+
+
+
+
+
+
+//Ridmi
 app.use('/rmRequests', rmRequestRoute);
 app.use('/rmDistributes', rmDistributeRoute);
 app.use('/empPerformances', empPerformanceRoute);
+
+
+
+
+
+
+
+//Isuru
+
+
+
+
+
+
+
+
+
+
+//Gihan
+
+
+
+
+
+
+
+
+
+//Sandithi
+
+
+
+
+
+
+
+
+
+//Maneth
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 mongoose
   .connect(MONGO_URI)
@@ -45,5 +197,5 @@ mongoose
     });
   })
   .catch((error) => {
-    console.log("MongoDB Connection Error: ", error);
+    console.log("MongoDB Connection Error: ", error);                                    // Logging MongoDB connection error
   });
