@@ -71,14 +71,7 @@ import cors from "cors";
 import employeeRoute from "./routes/employeeRoute.js";
 import attendanceRoute from "./routes/attendanceRoute.js";
 import occupationRoute from "./routes/occupationRoute.js";
-
-
-
-
-
-
-//Maneth
-
+import cors from "cors";
 
 
 
@@ -86,10 +79,6 @@ import occupationRoute from "./routes/occupationRoute.js";
 
 
 
-
-
-
-//connection
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -167,26 +156,6 @@ app.get("/", (req, res) => {
 app.use("/employee", employeeRoute);
 app.use("/attendance", attendanceRoute);
 app.use("/occupation", occupationRoute);
-
-
-
-
-
-
-//Maneth
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 mongoose
   .connect(MONGO_URI)
