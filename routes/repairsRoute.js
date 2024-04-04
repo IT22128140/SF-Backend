@@ -1,7 +1,23 @@
-import express from "express";
+import express, { request, response } from "express";
 import { Repair } from "../models/repairModel.js";
 
 const router = express.Router();
+
+// Route for getting completed repairs
+router.get('/completed', async (request, response) => {
+  try {
+    
+    const completedRepairs = await Repair.find({ Status: "Completed" });
+
+    return response.status(200).json({
+      count: completedRepairs.length,
+      data: completedRepairs
+    });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
 
 //Route for save a new Repair
 router.post('/', async(request, response) => {
@@ -17,7 +33,7 @@ router.post('/', async(request, response) => {
         !request.body.CompletedDate
       ){
         return response.status(404).send({
-          message: 'Send all required fields of the table',
+          message: 'Send all required fields of the repairs table',
         });
       }
       const newRepair = {
@@ -123,5 +139,21 @@ router.post('/', async(request, response) => {
       response.status(500).send({ message: error.message});
     }
   });
+
+
+  //search repair by id
+  router.search('/:key', async(request, response) =>{
+    console.log(request.params.key);
+    let data = await Repair.find(
+      {
+        "$or": [
+          {RepairID: {$regex: request.params.key}}
+        ]
+      }
+    );
+    response.send(data);
+  });
+
+  
 
   export default router;
