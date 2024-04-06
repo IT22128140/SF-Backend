@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const LoginEmp = mongoose.Schema({
+const LoginCusSchema = mongoose.Schema({
     email: {
       type: String,
       required: true,
@@ -17,5 +17,6 @@ const LoginEmp = mongoose.Schema({
     }
   });
   
-  const User = mongoose.model('User', userSchema);
-  export const user = mongoose.model('user' ,LoginEmp);
+  export const LoginCus = mongoose.model('LoginEmp', LoginCusSchema);
+
+  
