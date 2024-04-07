@@ -69,11 +69,11 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 //Sandithi
-
-
-
-
-
+import employeeRoute from "./routes/employeeRoute.js";
+import attendanceRoute from "./routes/attendanceRoute.js";
+import occupationRoute from "./routes/occupationRoute.js";
+import resignRoute from "./routes/resignRoute.js";
+import employeeStatusRoute from "./routes/employeeStatusRoute.js";
 
 
 
@@ -166,11 +166,11 @@ app.use('/mpshortages', mprShortagesRoute);
 
 
 //Sandithi
-
-
-
-
-
+app.use("/employee", employeeRoute);
+app.use("/attendance", attendanceRoute);
+app.use("/occupation", occupationRoute);
+app.use("/resign", resignRoute);
+app.use("/employeeStatus", employeeStatusRoute);
 
 
 

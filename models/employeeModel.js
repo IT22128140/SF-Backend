@@ -58,6 +58,9 @@ const employeeSchema = mongoose.Schema({
     type: Number,
     required: true,
   }
+},
+{
+  timestamps: true,
 });
 
 export const Employee = mongoose.model("Employee", employeeSchema);
