@@ -1,13 +1,13 @@
-import express, { request, response } from "express";
+import express from "express";
 import { PORT, MONGO_URI } from "./config.js";
 import mongoose from "mongoose";
 import cors from "cors";
 //enter your imports under your name. don't add or delete empty spaces
 //Sageevan
-
-
-
-
+import productRequestRoute from "./routes/productRequestRoute.js";//sageevanRoute 1/4
+import productReviewRoute from "./routes/productReviewRoute.js";//sageevanRoute 2/4
+import rejectedProductRoute from "./routes/rejectedProductRoute.js";//sageevanRoute 3/4
+import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRoute 4/4
 
 
 
@@ -26,9 +26,9 @@ import cors from "cors";
 
 
 //Hiranya
-
-
-
+import repairsRoute from './routes/repairsRoute.js';
+import machinesRoute from './routes/machinesRoute.js';
+import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 
@@ -113,10 +113,10 @@ app.get("/", (req, res) => {
 
 
 //Sageevan
-
-
-
-
+app.use('/qualityControl/productRequest',productRequestRoute);
+app.use('/qualityControl/productReview',productReviewRoute);
+app.use('/qualityControl/releaseProduct',releaseProductRoute);
+app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
 
 
 
@@ -124,9 +124,9 @@ app.get("/", (req, res) => {
 
 
 //Hiranya
-
-
-
+app.use('/repairs', repairsRoute);
+app.use('/machines', machinesRoute);
+app.use('/mpshortages', mprShortagesRoute);
 
 
 

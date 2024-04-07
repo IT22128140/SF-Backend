@@ -1,47 +1,39 @@
 import mongoose from "mongoose";
 
-const repairsSchema = mongoose.Schema(
+const rmRequestSchema = mongoose.Schema(
     {
-        RepairID: {
+        RequestID: {
             type: String,
             required: true,
         },
-        
-        RepairDescription: {
-            type: String,
-            required: true,
-        },
-    
-        RequestedDate: {
+        Date: {
             type: Date,
             required: true,
         },
-    
-        RequestedTime: {
+        FabricType_Colour_Amount: {
             type: String,
             required: true,
         },
-    
-        UrgencyLevel: {
+        ButtonType_Colour_Amount: {
             type: String,
             required: true,
         },
-    
-        Status: {
+        ThreadType_Colour_Amount:{
             type: String,
             required: true,
         },
-
-    
-        CompletedDate: {
-         type: String,
-         required: true,
+        Other_Materials:{
+            type: String,
+            required: true,
         },
-    
+        Status:{
+            type: String,
+            required:true
+        },
     },
     {
         timestamps: true,
     }
-    );
+);
 
-export const Repair = mongoose.model('Repair', repairsSchema);
+export const rmRequest = mongoose.model('rmRequest',rmRequestSchema);
