@@ -6,6 +6,7 @@ import { RM } from "./models/RMStock.js";
 import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
 import RMStockRoutes from "./routes/RMStockRoutes.js";
 import MachinePartRoutes from "./routes/MachinePartRoutes.js";
+import RequestFillingRoutes from "./routes/RequestFillingRoutes.js"
 
 const app = express();                             // Creating an Express application instance
 
@@ -39,6 +40,7 @@ app.get('/RMstock/search/:key', async (req, res) => {
 app.use('/supdetails', SupplierDetailsroutes);
 app.use('/RMstock', RMStockRoutes);
 app.use('/mpstock', MachinePartRoutes);
+app.use('/ReqFF', RequestFillingRoutes);
 
 // Connecting to MongoDB and starting the server
 mongoose
