@@ -1,7 +1,24 @@
 import express from 'express';
 import {empPerformance} from '../models/empPerformanceModel.js';
+import { Employee } from '../models/employeeModel.js';
 
 const router = express.Router();
+
+//Route for fetch a employee with line worker occupation
+router.get('/lineworkers',async(request,response) => {
+  try{
+    const lineworkers = await Employee.find({occupation: "LineWorker"});
+
+    return response.status(200).json({
+      count: lineworkers.length,
+      data: lineworkers
+    });
+
+  }catch(error){
+    console.log(error.message);
+    response.status(500).send({message: error.message});
+  }
+});
 
 //Route for save a new empPerformance
 router.post('/', async (request,response) => {
