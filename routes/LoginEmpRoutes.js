@@ -1,18 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User');
+import express from 'express';
+import {LoginEmp} from '../models/LoginEmpModel.js';
 
-// POST - Register a new user
-router.post('/register', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = new User({ email, password });
-    await user.save();
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+
+const router = express.Router();
+
 
 // POST - Login
 router.post('/login', async (req, res) => {
