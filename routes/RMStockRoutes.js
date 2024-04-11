@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', async (request,response) => {
     try{
       if(
-       
+        !request.body.requestID ||
         !request.body.materialType||
         !request.body.colorAndDesign ||
         !request.body.quantity
@@ -18,7 +18,7 @@ router.post('/', async (request,response) => {
       }
   
       const RMS ={
-        
+        requestID : request.body.requestID,
         materialType: request.body.materialType,
         colorAndDesign: request.body.colorAndDesign,
         quantity: request.body.quantity
