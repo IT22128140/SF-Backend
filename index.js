@@ -69,6 +69,7 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 //Sandithi
+import employeeRoute from "./routes/employeeRoute.js";
 
 
 
@@ -82,8 +83,6 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import deliveryRoute from "./routes/deliveryDetailsRoute.js";
-import mongoose from "mongoose";
-import cors from "cors";
 
 
 
@@ -166,6 +165,7 @@ app.use('/mpshortages', mprShortagesRoute);
 
 
 //Sandithi
+app.use("/employee", employeeRoute);
 
 
 
