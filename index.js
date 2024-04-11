@@ -52,7 +52,7 @@ import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
 import RMStockRoutes from "./routes/RMStockRoutes.js";
 import MachinePartRoutes from "./routes/MachinePartRoutes.js";
 import RequestFillingRoutes from "./routes/RequestFillingRoutes.js"
-
+import suppRawsRoute from "./routes/suppRawsRoute.js"
 
 
 
@@ -153,6 +153,7 @@ app.use('/supdetails', SupplierDetailsroutes);
 app.use('/RMstock', RMStockRoutes);
 app.use('/mpstock', MachinePartRoutes);
 app.use('/ReqFF', RequestFillingRoutes);
+app.use('/suppRM',suppRawsRoute);
 
 
 

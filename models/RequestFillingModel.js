@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const requestFF = mongoose.Schema(
     {
+        requstId:{
+            type:String,
+            required: true,
+        },
         fabricType:{
             type:String,
             required: true,

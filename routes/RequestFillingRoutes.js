@@ -8,6 +8,7 @@ router.post('/', async (req, res) => {
     // Validation checks for request body fields
 
     const RFf = {
+        requstId: req.body.requstId,
       fabricType: req.body.fabricType,
       buttonType: req.body.buttonType,
       threadType: req.body.threadType,

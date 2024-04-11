@@ -15,11 +15,24 @@ const AvailableRMS = mongoose.Schema(
             type:String,
             required: true,
         },
-        quantity:{
+        initialquantity:{
+            type: Number,
+            required: true,
+        }, 
+        
+        costperunit:{
+            type: Number,
+            required: true,
+        },
+         restockingdate:{
+            type: Date,
+            required: true,
+        },
+        availablequantity:{
             type: Number,
             required: true,
         }
-       
+      
      }
 );
 
