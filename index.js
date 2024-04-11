@@ -4,10 +4,10 @@ import mongoose from "mongoose";
 import cors from "cors";
 //enter your imports under your name. don't add or delete empty spaces
 //Sageevan
-
-
-
-
+import productRequestRoute from "./routes/productRequestRoute.js";//sageevanRoute 1/4
+import productReviewRoute from "./routes/productReviewRoute.js";//sageevanRoute 2/4
+import rejectedProductRoute from "./routes/rejectedProductRoute.js";//sageevanRoute 3/4
+import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRoute 4/4
 
 
 
@@ -70,11 +70,10 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 //Sandithi
 import employeeRoute from "./routes/employeeRoute.js";
-
-
-
-
-
+import attendanceRoute from "./routes/attendanceRoute.js";
+import occupationRoute from "./routes/occupationRoute.js";
+import resignRoute from "./routes/resignRoute.js";
+import employeeStatusRoute from "./routes/employeeStatusRoute.js";
 
 
 
@@ -83,6 +82,8 @@ import employeeRoute from "./routes/employeeRoute.js";
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import deliveryRoute from "./routes/deliveryDetailsRoute.js";
+
+
 
 
 
@@ -112,10 +113,10 @@ app.get("/", (req, res) => {
 
 
 //Sageevan
-
-
-
-
+app.use('/qualityControl/productRequest',productRequestRoute);
+app.use('/qualityControl/productReview',productReviewRoute);
+app.use('/qualityControl/releaseProduct',releaseProductRoute);
+app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
 
 
 
@@ -166,11 +167,10 @@ app.use('/mpshortages', mprShortagesRoute);
 
 //Sandithi
 app.use("/employee", employeeRoute);
-
-
-
-
-
+app.use("/attendance", attendanceRoute);
+app.use("/occupation", occupationRoute);
+app.use("/resign", resignRoute);
+app.use("/employeeStatus", employeeStatusRoute);
 
 
 
