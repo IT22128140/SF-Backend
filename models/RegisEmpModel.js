@@ -22,6 +22,10 @@ const RegisEmpModelSchema = mongoose.Schema({
         type: String,
         required: true
       },
+      password2: {
+        type: String,
+        required: true
+      },
       employeeType: {
         type: String,
         enum: ['HR_Manager', 'Stock_Manager', 'Repair_Manager', 'Process_Manager', 'Quality_Control_Manager', 'Store_Manager'],
@@ -29,6 +33,6 @@ const RegisEmpModelSchema = mongoose.Schema({
       }
   });
   
-  export const RegisEmpModel = mongoose.model('LoginEmp', RegisEmpModelSchema);
+  export const RegisEmp = mongoose.model('RegisEmp', RegisEmpModelSchema);
 
   

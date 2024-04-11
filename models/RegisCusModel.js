@@ -22,8 +22,12 @@ const RegisCusModelSchema = mongoose.Schema({
         type: String,
         required: true
       },
+      password2: {
+        type: String,
+        required: true
+      },
   });
   
-  export const RegisCusModel = mongoose.model('LoginEmp', RegisCusModelSchema);
+  export const RegisCus = mongoose.model('RegisCus', RegisCusModelSchema);
 
   
