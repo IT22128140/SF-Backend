@@ -1,5 +1,5 @@
 import express from 'express';
-import { Sup} from '../models/SupplierDetails.js';
+import { Sup} from '../models/SupplierDetailsModel.js';
 
 const router = express.Router();
 
@@ -9,6 +9,7 @@ router.post('/', async (request, response) => {
     try {
       // Checking if all required fields are provided in the request body
       if (
+        !request.body.SRequestID ||
         !request.body.supplierName ||
         !request.body.address ||
         !request.body.contactNumber ||
@@ -23,6 +24,7 @@ router.post('/', async (request, response) => {
   
       // Creating a new supplier document
       const supdtls = {
+        SRequestID:    request.body.SRequestID,
         supplierName:    request.body.supplierName,
         address:         request.body.address,
         contactNumber:   request.body.contactNumber,
