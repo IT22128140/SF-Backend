@@ -1,40 +1,37 @@
 import express from 'express';
-import {LoginEmp} from '../models/LoginEmpModel.js';
-
+import { RegisEmp } from '../models/RegisEmpModel.js';
 
 const router = express.Router();
 
-
-// POST - Login
-router.post('/login', async (req, res) => {
+router.post('/RegisEmp', async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await LoginEmp.findOne({ email, password });
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+    const { email, password, loginType } = req.body;
+
+    // Need to add login logic here:
+    const employee = await RegisEmp.findOne({ email });
+
+    if (!employee || employee.password !== password || employee.loginType !== loginType) {
+      return res.status(401).json({ message: 'Invalid email, password, or login type. Please try again.' });
     }
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+
+    // Here we can compare the hashed password using a library like bcrypt
+    if (password !== employee.password) {
+      return res.status(401).json({ message: 'Invalid email or password. Please try again.' });
+    }
+
+    // Generate token for authentication
+    const token = generateToken();
+
+    res.status(200).json({ message: 'Login successful', token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// PUT - Update user details (if needed)
-router.put('/:id', async (req, res) => {
-  try {
-    // Update user details
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+// Function to generate token
+function generateToken() {
+  // Need to Implement token generation logic here
+}
 
-// DELETE - Delete user account (if needed)
-router.delete('/:id', async (req, res) => {
-  try {
-    // Delete user account
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-module.exports = router;
+export default router;
