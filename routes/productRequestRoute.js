@@ -4,7 +4,7 @@ import { ProductRequest } from '../models/productRequestModel.js';
 const router = express.Router();
 
 //Route for save a productRequest
-  router.post('/add', async (request, response) =>{
+  router.post('/', async (request, response) =>{
     try{
       if(
         !request.body.productCode||
@@ -31,17 +31,35 @@ const router = express.Router();
     }
   });
   
-  //Route for view productRequest
+  //Route for view all productRequest
   router.get('/', async (request, response) =>{
     try{
-      const productRequests = await ProductRequest.find({});
+      const productRequests = await ProductRequest.find({acceptStatus: 'pending'});
   
-      return response.status(200).json(productRequests);
+      return response.status(200).json({
+        count: productRequests.length,
+        data: productRequests
+      });
     }catch(error){
       console.log(error.message);
       response.status(500).send({message: error.message});
     }
   });
+
+    //Route for view pending Review 
+    router.get('/pendingReview', async (request, response) =>{
+      try{
+        const productRequests = await ProductRequest.find({acceptStatus: 'Accept'});
+    
+        return response.status(200).json({
+          count: productRequests.length,
+          data: productRequests
+        });
+      } catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+      }
+    });
   
   //Route for view productRequest by id
   router.get('/:id', async (request, response) =>{
@@ -50,7 +68,10 @@ const router = express.Router();
       const { id } = request.params;
       const productRequest = await ProductRequest.findById(id);
   
-      return response.status(200).json(productRequest);
+      return response.status(200).json({
+        count: productRequest.length,
+        data: productRequest
+      });
     }catch(error){
       console.log(error.message);
       response.status(500).send({message: error.message});
@@ -71,7 +92,7 @@ const router = express.Router();
       }
   
       const { id } = request.params;
-      const result = await ProductRequest.findByIdAndUpdate(id);
+      const result = await ProductRequest.findByIdAndUpdate(id, request.body);
   
       if (!result){
         return response.status(404).json({message: "Not found"});
@@ -87,7 +108,7 @@ const router = express.Router();
   });
   
   //Rought for delete a productRequest
-  router.delete('/', async (request, response) =>{
+  router.delete('/:id', async (request, response) =>{
     try{
   
       const { id } = request.params;
@@ -103,5 +124,30 @@ const router = express.Router();
       response.status(500).send({message: error.message});
     }
   });
+
+  //Route for Accept Final Product by id
+  router.put('/:id/updateAcceptStatus', async (request, response) =>{
+  try{
+    const { id } = request.params;
+    
+    const productRequest = await ProductRequest.findById(id, request.body);
+    if (!productRequest) {
+      return response.status(404).json({message: "Product Request not found"});
+    }
+
+    productRequest.acceptStatus = "Accept";
+
+    await productRequest.save();
+
+    return response.status(200).json({message: "Accepted successfully"});
+
+  } catch(error){
+    console.log(error.message);
+    response.status(500).send({message: "Internal server error"});
+  }
+});
+
+
+
 
   export default router;
