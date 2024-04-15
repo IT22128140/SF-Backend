@@ -1,6 +1,6 @@
-import express from "express";
-import { PORT, MONGO_URI } from "./config.js";
-import mongoose from "mongoose";
+import express, { request } from "express";                        // Importing express
+import mongoose from "mongoose";                     // Importing mongoose for MongoDB interaction
+import { PORT, MONGO_URI } from "./config.js";      // Importing PORT and MONGO_URI from configuration
 import cors from "cors";
 //enter your imports under your name. don't add or delete empty spaces
 //Sageevan
@@ -8,6 +8,7 @@ import productRequestRoute from "./routes/productRequestRoute.js";//sageevanRout
 import productReviewRoute from "./routes/productReviewRoute.js";//sageevanRoute 2/4
 import rejectedProductRoute from "./routes/rejectedProductRoute.js";//sageevanRoute 3/4
 import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRoute 4/4
+
 
 
 
@@ -48,8 +49,11 @@ import MaintenanceRoute from './routes/MaintenanceRoute.js';
 
 
 //Isuru
-
-
+import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
+import RMStockRoutes from "./routes/RMStockRoutes.js";
+import MachinePartRoutes from "./routes/MachinePartRoutes.js";
+import RequestFillingRoutes from "./routes/RequestFillingRoutes.js"
+import suppRawsRoute from "./routes/suppRawsRoute.js"
 
 
 
@@ -147,6 +151,11 @@ app.use('/maintenance', MaintenanceRoute);
 
 
 //Isuru
+app.use('/supdetails', SupplierDetailsroutes);
+app.use('/RMstock', RMStockRoutes);
+app.use('/mpstock', MachinePartRoutes);
+app.use('/ReqFF', RequestFillingRoutes);
+app.use('/suppRM',suppRawsRoute);
 
 
 
@@ -181,6 +190,7 @@ app.use("/employeeStatus", employeeStatusRoute);
 app.use("/items", itemsRoute);
 app.use("/cart", cartRoute);
 app.use("/deliveryDetails", deliveryRoute);
+
 
 
 
