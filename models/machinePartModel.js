@@ -3,6 +3,10 @@ import mongoose from "mongoose";
 const MachineParts = mongoose.Schema(
      {
         
+        partID:{
+            type:String,
+            required: true,
+        },
        
         partName:{
             type:String,
