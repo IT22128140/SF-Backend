@@ -8,25 +8,63 @@ const maintenanceSchema = mongoose.Schema(
             required: true,
         },
 
-        SewingMachine: [
+        MachineID: {
+            type: String,
+            required: true,
+        },
+
+        MachineName: {
+            type: String,
+            required: true,
+        },
+
+        Category: {
+            type: String,
+            required: true,
+        },
+
+        Machineparts: [
             {
-                MachineID: {
+                partID:{
+                    type:String,
+                    required: true,
+                },
+               
+                partName:{
+                    type:String,
+                    required: true,
+                },
+
+                condition:{
                     type: String,
                     required: true,
                 },
 
-                MachineName: {
-                    type: String,
+                
+                quantity:{
+                    type: Number,
                     required: true,
                 },
-
-                Category: {
-                    type: String,
-                    required: true,
-                }
-
             }
         ],
+
+        ChangedMotor:
+        {
+            type: String,
+            required: true,
+        },
+
+        ChangedNeedle:
+        {
+            type: String,
+            required: true,
+        },
+
+        Oiled:
+        {
+            type: String,
+            required: true,
+        },
     }
 
 )
