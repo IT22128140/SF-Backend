@@ -5,10 +5,8 @@ const mprShortagesSchema = mongoose.Schema(
         RequestID: {
             type: String,
             required: true,
-        },
-
-        PartID: {
-            type: String,
+        Requested: {
+            type: Date,
             required: true,
         },
 
@@ -34,6 +32,10 @@ const mprShortagesSchema = mongoose.Schema(
 
         NeededBeforeDate: {
             type: Date,
+            required: true,
+        },
+        Status: {
+            type: String,
             required: true,
         },
     

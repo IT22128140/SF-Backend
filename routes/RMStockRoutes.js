@@ -1,5 +1,5 @@
 import express from 'express';
-import {RM} from '../models/RMStock.js';
+import {RM} from '../models/RMStockModel.js';
 
 
 const router = express.Router();
@@ -7,10 +7,13 @@ const router = express.Router();
 router.post('/', async (request,response) => {
     try{
       if(
-       
+        !request.body.requestID ||
         !request.body.materialType||
         !request.body.colorAndDesign ||
-        !request.body.quantity
+        !request.body.initialquantity ||
+        !request.body.costperunit ||
+        !request.body.restockingdate ||
+        !request.body.availablequantity 
       ){
         return response.status(400).send({
           message: 'send all required fields',
@@ -18,10 +21,14 @@ router.post('/', async (request,response) => {
       }
   
       const RMS ={
-        
+        requestID : request.body.requestID,
         materialType: request.body.materialType,
         colorAndDesign: request.body.colorAndDesign,
-        quantity: request.body.quantity
+        initialquantity: request.body.initialquantity,
+        costperunit: request.body.costperunit,
+        restockingdate: request.body.restockingdate,
+        availablequantity: request.body.availablequantity
+
       };
        
        const RawM = await RM.create(RMS); 
@@ -62,9 +69,16 @@ router.put('/:id', async (request, response) => {
     try {
       // Checking if all required fields are provided in the request body
       if (
+        
+        !request.body.requestID ||
         !request.body.materialType||
         !request.body.colorAndDesign ||
-        !request.body.quantity
+        !request.body.initialquantity ||
+        !request.body.costperunit ||
+        !request.body.restockingdate ||
+        !request.body.availablequantity 
+        
+
       ) {
         return response.status(400).send({ message: 'Send all required fields' });
       }

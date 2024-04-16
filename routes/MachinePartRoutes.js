@@ -1,5 +1,5 @@
 import express from 'express';
-import {MP} from '../models/machinePart.js';
+import {MP} from '../models/machinePartModel.js';
 
 
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', async (request,response) => {
     try{
       if(
-       
+        !request.body.partID ||
         !request.body.partName||
         !request.body.purchasedDate ||
         !request.body.condition ||
@@ -21,7 +21,7 @@ router.post('/', async (request,response) => {
       }
   
       const MPS ={
-        
+        partID: request.body.partID,
         partName: request.body.partName,
         purchasedDate: request.body.purchasedDate,
         condition: request.body.condition,
@@ -30,7 +30,7 @@ router.post('/', async (request,response) => {
         manufacturer: request.body.manufacturer
       };
        
-       const MchnP = await MP.create(RMS); 
+       const MchnP = await MP.create(MPS); 
         return response.status(201).send(MchnP);
     }catch(error){
       console.log(error.message);
@@ -67,6 +67,7 @@ router.put('/:id', async (request, response) => {
     try {
       // Checking if all required fields are provided in the request body
       if (
+        !request.body.partID ||
         !request.body.partName||
         !request.body.purchasedDate ||
         !request.body.condition ||
