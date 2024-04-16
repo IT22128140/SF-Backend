@@ -1,6 +1,6 @@
 import express, { request, response } from "express";
 import { Maintenance } from "../models/MaintenanceModel.js";
-import { MP } from "../models/machinePart.js";
+import { MP } from "../models/machinePartModel.js";
 import { Machine } from "../models/machinesModes.js";
 
 const router = express.Router();
