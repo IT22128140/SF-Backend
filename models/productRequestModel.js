@@ -29,6 +29,9 @@ const productRequestSchema = mongoose.Schema(
             required: true,
             default: "PM_ID",
         }
+    },
+    {
+        timestamps: true,
     }
 );
 
