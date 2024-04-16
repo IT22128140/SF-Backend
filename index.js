@@ -16,7 +16,7 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 //Varagan
-
+import FeedbackFormRoute from "./routes/FeedbackFormRoute.js";
 
 
 
@@ -107,7 +107,7 @@ app.get("/", (req, res) => {
 
 //enter your routes under your name. don't add or delete empty spaces
 //Varagan
-
+app.use("/Feedback", FeedbackFormRoute);
 
 
 
