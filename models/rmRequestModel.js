@@ -1,50 +1,39 @@
 import mongoose from "mongoose";
 
-const mprShortagesSchema = mongoose.Schema(
+const rmRequestSchema = mongoose.Schema(
     {
         RequestID: {
             type: String,
             required: true,
         },
-
-        Requested: {
+        Date: {
             type: Date,
             required: true,
         },
-
-        PartName: {
+        FabricType_Colour_Amount: {
             type: String,
             required: true,
         },
-    
-        Description: {
+        ButtonType_Colour_Amount: {
             type: String,
             required: true,
         },
-    
-        Quantity: {
-            type: Number,
-            required: true,
-        },
-    
-        Condition: {
-         type: String,
-         required: true,
-        },
-
-        NeededBeforeDate: {
-            type: Date,
-            required: true,
-        },
-        Status: {
+        ThreadType_Colour_Amount:{
             type: String,
             required: true,
         },
-    
+        Other_Materials:{
+            type: String,
+            required: true,
+        },
+        Status:{
+            type: String,
+            required:true
+        },
     },
     {
         timestamps: true,
     }
-    );
+);
 
-export const PartShortage = mongoose.model('PartShortage', mprShortagesSchema);
+export const rmRequest = mongoose.model('rmRequest',rmRequestSchema);

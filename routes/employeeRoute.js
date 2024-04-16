@@ -3,17 +3,6 @@ import { Employee } from "../models/employeeModel.js";
 
 const router = express.Router();
 
-// router.get("/:occupation", async (req, res) => {
-//   try {
-//     const { occupation } = req.params;
-//     const employee = await Employee.find({occupation:occupation});
-//     return res.status(200).json(employee.length);
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).send({ message: error.message });
-//   }
-// });
-
 router.post("/", async (req, res) => {
   try {
     if (
@@ -58,7 +47,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const employees = await Employee.find({});
+    const employees = await Employee.find({ employeeStatus: "Active"});
     return res.status(200).json({
       count: employees.length,
       data: employees,
