@@ -16,7 +16,7 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 //Varagan
-
+import FeedbackFormRoute from "./routes/FeedbackFormRoute.js";
 
 
 
@@ -38,9 +38,9 @@ import MaintenanceRoute from './routes/MaintenanceRoute.js';
 
 
 //Ridmi
-
-
-
+import rmRequestRoute from './routes/rmRequestRoute.js';
+import rmDistributeRoute from './routes/rmDistributeRoute.js';
+import empPerformanceRoute from './routes/empPerformanceRoute.js';
 
 
 
@@ -75,6 +75,7 @@ import chequeimage from "./routes/chequeimage.js";
 
 
 
+
 //Sandithi
 import employeeRoute from "./routes/employeeRoute.js";
 import attendanceRoute from "./routes/attendanceRoute.js";
@@ -89,7 +90,7 @@ import employeeStatusRoute from "./routes/employeeStatusRoute.js";
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import deliveryRoute from "./routes/deliveryDetailsRoute.js";
-
+import orderRoute from "./routes/orderRoute.js";
 
 
 
@@ -109,7 +110,7 @@ app.get("/", (req, res) => {
 
 //enter your routes under your name. don't add or delete empty spaces
 //Varagan
-
+app.use("/Feedback", FeedbackFormRoute);
 
 
 
@@ -142,9 +143,9 @@ app.use('/maintenance', MaintenanceRoute);
 
 
 //Ridmi
-
-
-
+app.use('/rmRequests', rmRequestRoute);
+app.use('/rmDistributes', rmDistributeRoute);
+app.use('/empPerformances', empPerformanceRoute);
 
 
 
@@ -196,7 +197,7 @@ app.use("/employeeStatus", employeeStatusRoute);
 app.use("/items", itemsRoute);
 app.use("/cart", cartRoute);
 app.use("/deliveryDetails", deliveryRoute);
-
+app.use("/order", orderRoute);
 
 
 
@@ -218,5 +219,5 @@ mongoose
     });
   })
   .catch((error) => {
-    console.log("MongoDB Connection Error: ", error);                                    // Logging MongoDB connection error
-  });
+    console.log("MongoDB Connection Error: ", error);                                    // Logging MongoDB connection error
+  });
