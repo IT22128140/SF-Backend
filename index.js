@@ -82,7 +82,7 @@ import cors from "cors";
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import deliveryRoute from "./routes/deliveryDetailsRoute.js";
-
+import orderRoute from "./routes/orderRoute.js";
 
 
 
@@ -179,7 +179,7 @@ app.get("/", (req, res) => {
 app.use("/items", itemsRoute);
 app.use("/cart", cartRoute);
 app.use("/deliveryDetails", deliveryRoute);
-
+app.use("/order", orderRoute);
 
 
 
