@@ -1,7 +1,39 @@
 import express from 'express';
 import { rmRequest } from '../models/rmRequestModel.js';
 
-const router = express.Router();
+const router = express.Router(); 
+
+//Route to get completed rmrequests
+router.get('/completed', async(request,response) => {
+  try{
+    const completedrmrequests = await rmRequest.find({Status : "Completed"});
+
+    return response.status(200).json({
+      count: completedrmrequests.length,
+      data: completedrmrequests
+    });
+
+  } catch (error) {
+      console.log(error.message);
+      response.status(500).send({message: error.message});
+  }
+});
+
+//Route to get pending rmrequests
+router.get('/pending', async(request,response) => {
+  try{
+    const pendingrmrequests = await rmRequest.find({Status : "Pending"});
+
+    return response.status(200).json({
+      count: pendingrmrequests.length,
+      data: pendingrmrequests
+    });
+
+  } catch (error) {
+      console.log(error.message);
+      response.status(500).send({message: error.message});
+  }
+});
 
 //Route for save a new rmrequest
 router.post('/', async (request,response) => {
