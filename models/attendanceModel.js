@@ -9,7 +9,7 @@ const attendanceSchema = mongoose.Schema(
         status: {
             type: String,
             required: true,
-            defualt: "Present"
+            // defualt: "Present"
         }
     },
     {   
