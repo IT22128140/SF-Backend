@@ -37,7 +37,10 @@ router.post('/add', async (request, response) =>{
       try{
         const rejectedProducts = await RejectedProduct.find({});
     
-        return response.status(200).json(rejectedProducts);
+        return response.status(200).json({
+          count: rejectedProducts.length,
+          data: rejectedProducts
+        });
       }catch(error){
         console.log(error.message);
         response.status(500).send({message: error.message});
@@ -51,7 +54,10 @@ router.post('/add', async (request, response) =>{
         const { id } = request.params;
         const rejectedProduct = await RejectedProduct.findById(id);
     
-        return response.status(200).json(rejectedProduct);
+        return response.status(200).json({
+          count: rejectedProduct.length,
+          data: rejectedProduct
+        });
       }catch(error){
         console.log(error.message);
         response.status(500).send({message: error.message});

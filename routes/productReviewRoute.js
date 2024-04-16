@@ -4,7 +4,7 @@ import { ProductReview } from '../models/productReviewModel.js';
 const router = express.Router();
 
 //Route for save a productReview
-router.post('/add', async (request, response) =>{
+router.post('/', async (request, response) =>{
     try{
       if(
         !request.body.productCode||
@@ -37,7 +37,10 @@ router.post('/add', async (request, response) =>{
     try{
       const productReviews = await ProductReview.find({});
   
-      return response.status(200).json(productReviews);
+      return response.status(200).json({
+        count: productReviews.length,
+        data: productReviews
+      });
     }catch(error){
       console.log(error.message);
       response.status(500).send({message: error.message});
@@ -51,7 +54,10 @@ router.post('/add', async (request, response) =>{
       const { id } = request.params;
       const productReview = await ProductReview.findById(id);
   
-      return response.status(200).json(productReview);
+      return response.status(200).json({
+        count: productReview.length,
+        data: productReview
+      });
     }catch(error){
       console.log(error.message);
       response.status(500).send({message: error.message});

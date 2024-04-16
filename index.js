@@ -1,6 +1,6 @@
-import express from "express";
-import { PORT, MONGO_URI } from "./config.js";
-import mongoose from "mongoose";
+import express, { request } from "express";                        // Importing express
+import mongoose from "mongoose";                     // Importing mongoose for MongoDB interaction
+import { PORT, MONGO_URI } from "./config.js";      // Importing PORT and MONGO_URI from configuration
 import cors from "cors";
 //enter your imports under your name. don't add or delete empty spaces
 //Sageevan
@@ -14,8 +14,9 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 
-//Varagan
 
+//Varagan
+import FeedbackFormRoute from "./routes/FeedbackFormRoute.js";
 
 
 
@@ -29,6 +30,7 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 import repairsRoute from './routes/repairsRoute.js';
 import machinesRoute from './routes/machinesRoute.js';
 import mprShortagesRoute from './routes/mprShortagesRoute.js';
+import MaintenanceRoute from './routes/MaintenanceRoute.js';
 
 
 
@@ -36,9 +38,9 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 //Ridmi
-
-
-
+import rmRequestRoute from './routes/rmRequestRoute.js';
+import rmDistributeRoute from './routes/rmDistributeRoute.js';
+import empPerformanceRoute from './routes/empPerformanceRoute.js';
 
 
 
@@ -47,8 +49,11 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 //Isuru
-
-
+import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
+import RMStockRoutes from "./routes/RMStockRoutes.js";
+import MachinePartRoutes from "./routes/MachinePartRoutes.js";
+import RequestFillingRoutes from "./routes/RequestFillingRoutes.js"
+import suppRawsRoute from "./routes/suppRawsRoute.js"
 
 
 
@@ -59,7 +64,10 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 //Gihan
-
+import salaryRouter from "./routes/salaryemp.js";
+import paymentRouter from "./routes/paymentcus.js";
+import editsalary from "./routes/editsalary.js"
+import chequeimage from "./routes/chequeimage.js";
 
 
 
@@ -82,7 +90,7 @@ import employeeStatusRoute from "./routes/employeeStatusRoute.js";
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import deliveryRoute from "./routes/deliveryDetailsRoute.js";
-
+import orderRoute from "./routes/orderRoute.js";
 
 
 
@@ -102,7 +110,7 @@ app.get("/", (req, res) => {
 
 //enter your routes under your name. don't add or delete empty spaces
 //Varagan
-
+app.use("/Feedback", FeedbackFormRoute);
 
 
 
@@ -127,6 +135,7 @@ app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
 app.use('/repairs', repairsRoute);
 app.use('/machines', machinesRoute);
 app.use('/mpshortages', mprShortagesRoute);
+app.use('/maintenance', MaintenanceRoute);
 
 
 
@@ -134,9 +143,9 @@ app.use('/mpshortages', mprShortagesRoute);
 
 
 //Ridmi
-
-
-
+app.use('/rmRequests', rmRequestRoute);
+app.use('/rmDistributes', rmDistributeRoute);
+app.use('/empPerformances', empPerformanceRoute);
 
 
 
@@ -145,6 +154,11 @@ app.use('/mpshortages', mprShortagesRoute);
 
 
 //Isuru
+app.use('/supdetails', SupplierDetailsroutes);
+app.use('/RMstock', RMStockRoutes);
+app.use('/mpstock', MachinePartRoutes);
+app.use('/ReqFF', RequestFillingRoutes);
+app.use('/suppRM',suppRawsRoute);
 
 
 
@@ -156,6 +170,10 @@ app.use('/mpshortages', mprShortagesRoute);
 
 
 //Gihan
+app.use('/salary', salaryRouter);
+app.use('/payment', paymentRouter);
+app.use('/editsalary', editsalary);
+app.use('/uploads',chequeimage);
 
 
 
@@ -179,6 +197,7 @@ app.use("/employeeStatus", employeeStatusRoute);
 app.use("/items", itemsRoute);
 app.use("/cart", cartRoute);
 app.use("/deliveryDetails", deliveryRoute);
+app.use("/order", orderRoute);
 
 
 
