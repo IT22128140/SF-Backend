@@ -6,6 +6,11 @@ const paymentSchema =  mongoose.Schema(
          type: String,
          required: true,
      },
+
+     totalpayment: {
+        type: Number,
+        required: true,
+    },
   
     phoneNumber:{
         type: Number,

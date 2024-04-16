@@ -81,8 +81,7 @@ router.post('/', async (request, response) => {
             !request.body.basicSalary ||
             !request.body.attendance ||
             !request.body.overtime ||
-            !request.body.bonus ||
-            !request.body.totalAmount 
+            !request.body.bonus
             
           ) {
             return response.status(404).send({
@@ -90,7 +89,15 @@ router.post('/', async (request, response) => {
             });
           }
           const { id } = request.params;
-          const result = await Salary.findByIdAndUpdate(id,request.body);
+          
+          const data = {
+            basicSalary: request.body.basicSalary,
+            attendance: request.body.attendance,
+            overtime: request.body.overtime,
+            bonus: request.body.bonus
+          }
+
+          const result = await Salary.findByIdAndUpdate(id,data);
           if(!result) {
             return response.status(404).send({message: "salary not found"});
           }
@@ -130,6 +137,28 @@ router.post('/', async (request, response) => {
       }
     );
     response.send(data);
-  })
+  });
+
+  // Route to retrieve repair details within a date range
+  router.get('/range', async (req, res) => {
+    try {
+      // Parse start and end dates from request query parameters
+      const { startDate, endDate } = req.query;
+  
+      // Query the database for repair records within the specified date range
+      const salary = await Salary.find({
+        time: {
+          $gte: new Date(startDate),
+          $lte: new Date(endDate),
+        },
+      });
+  
+      // Return the retrieved repair details as a response
+      res.status(200).json(salary);
+    } catch (error) {
+      console.error('Error retrieving repair details:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
   
     export default router;

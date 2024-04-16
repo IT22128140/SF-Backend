@@ -12,6 +12,7 @@ router.post('/', async (request, response) => {
     try {
         if (
             !request.body.fullName ||
+            !request.body.totalpayment ||
             !request.body.phoneNumber ||
             !request.body.emailAddress ||
             !request.body.bankName ||
@@ -23,6 +24,7 @@ router.post('/', async (request, response) => {
         }
         const newPaymentcus = {
             fullName: request.body.fullName,
+            totalpayment: request.body.totalpayment,
             phoneNumber: request.body.phoneNumber,
             emailAddress: request.body.emailAddress,
             bankName: request.body.bankName,
@@ -35,6 +37,19 @@ router.post('/', async (request, response) => {
         response.status(500).send({message: error.message});
     }
   });
+
+  router.get('/:id', async (request, response) => {
+    try {
+
+      const { id } = request.params;
+
+      const paymentone = await Payment.findById(id);
+      return response.status(200).json(paymentone);
+    } catch (error) {
+      console.log(error.message);
+      response.status(500).send({message: error.message});
+    }
+    });
 
   export default router;
   
