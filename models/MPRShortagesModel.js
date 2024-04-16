@@ -5,6 +5,7 @@ const mprShortagesSchema = mongoose.Schema(
         RequestID: {
             type: String,
             required: true,
+        },
         Requested: {
             type: Date,
             required: true,
