@@ -30,6 +30,7 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 import repairsRoute from './routes/repairsRoute.js';
 import machinesRoute from './routes/machinesRoute.js';
 import mprShortagesRoute from './routes/mprShortagesRoute.js';
+import MaintenanceRoute from './routes/MaintenanceRoute.js';
 
 
 
@@ -131,6 +132,7 @@ app.use('/qualityControl/rejectedProduct',rejectedProductRoute);
 app.use('/repairs', repairsRoute);
 app.use('/machines', machinesRoute);
 app.use('/mpshortages', mprShortagesRoute);
+app.use('/maintenance', MaintenanceRoute);
 
 
 

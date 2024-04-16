@@ -1,23 +1,47 @@
 import express, { request, response } from "express";
 import { Repair } from "../models/repairModel.js";
+import { Employee } from "../models/employeeModel.js";
 
 const router = express.Router();
 
-// Route for getting completed repairs
-router.get('/completed', async (request, response) => {
+//Route for get RepairWorkers
+router.get('/rworkers', async (request, response) => {
   try {
-    
-    const completedRepairs = await Repair.find({ Status: "Completed" });
+    // Fetching only required fields using select()
+    const repairWorkers = await Employee.find({occupation: "RepairWorker" })
+                                        .select('employeeID firstName lastName occupation contactNo email');
 
     return response.status(200).json({
-      count: completedRepairs.length,
-      data: completedRepairs
+      count: repairWorkers.length,
+      data: repairWorkers
     });
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
   }
 });
+
+  // Route to retrieve repair details within a date range
+  router.get('/range', async (req, res) => {
+    try {
+      // Parse start and end dates from request query parameters
+      const { startDate, endDate } = req.query;
+  
+      // Query the database for repair records within the specified date range
+      const repairs = await Repair.find({
+        RequestedDate: {
+          $gte: new Date(startDate),
+          $lte: new Date(endDate),
+        },
+      });
+  
+      // Return the retrieved repair details as a response
+      res.status(200).json(repairs);
+    } catch (error) {
+      console.error('Error retrieving repair details:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 //Route for save a new Repair
 router.post('/', async(request, response) => {
@@ -30,12 +54,30 @@ router.post('/', async(request, response) => {
         !request.body.RequestedTime ||
         !request.body.UrgencyLevel ||
         !request.body.Status ||
+        !request.body.Workers||
         !request.body.CompletedDate
       ){
         return response.status(404).send({
           message: 'Send all required fields of the repairs table',
         });
       }
+
+      // Ensure that Workers is an array
+    if (!Array.isArray(request.body.Workers)) {
+      return response.status(400).send({
+        message: 'Workers must be an array of objects',
+      });
+    }
+
+    // Validate each worker object in the array
+    for (const worker of request.body.Workers) {
+      if (!worker.employeeID || !worker.firstName || !worker.lastName) {
+        return response.status(400).send({
+          message: 'Each worker must have an employeeID and firstName',
+        });
+      }
+    }
+
       const newRepair = {
         RepairID: request.body.RepairID,
         RepairDescription: request.body.RepairDescription,
@@ -43,6 +85,7 @@ router.post('/', async(request, response) => {
         RequestedTime: request.body.RequestedTime,
         UrgencyLevel: request.body.UrgencyLevel,
         Status: request.body.Status,
+        Workers: request.body.Workers,
         CompletedDate: request.body.CompletedDate,
       };
   
@@ -55,8 +98,10 @@ router.post('/', async(request, response) => {
       response.status(500).send({message: error.message});
     }
   });
+
   
   //Route for Get All Repairs from database
+  
   router.get('/', async(request, response) => {
     try {
       const repairs = await Repair.find({});
@@ -71,7 +116,7 @@ router.post('/', async(request, response) => {
     }
   });
   
-  
+
   //Route for Get One Repair from database by id
   router.get('/:id', async(request, response) => {
     try {
@@ -85,6 +130,7 @@ router.post('/', async(request, response) => {
       response.status(500).send({message: error.message});
     }
   });
+
   
   // Route for update a Repair
   router.put('/:id', async (request, response) => {
@@ -96,6 +142,7 @@ router.post('/', async(request, response) => {
         !request.body.RequestedTime ||
         !request.body.UrgencyLevel ||
         !request.body.Status ||
+        !request.body.Workers||
         !request.body.CompletedDate
       ) {
         return response.status(400).send({
@@ -153,7 +200,5 @@ router.post('/', async(request, response) => {
     );
     response.send(data);
   });
-
-  
 
   export default router;
