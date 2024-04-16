@@ -64,7 +64,10 @@ import suppRawsRoute from "./routes/suppRawsRoute.js"
 
 
 //Gihan
-
+import salaryRouter from "./routes/salaryemp.js";
+import paymentRouter from "./routes/paymentcus.js";
+import editsalary from "./routes/editsalary.js"
+import chequeimage from "./routes/chequeimage.js";
 
 
 
@@ -167,6 +170,10 @@ app.use('/suppRM',suppRawsRoute);
 
 
 //Gihan
+app.use('/salary', salaryRouter);
+app.use('/payment', paymentRouter);
+app.use('/editsalary', editsalary);
+app.use('/uploads',chequeimage);
 
 
 
