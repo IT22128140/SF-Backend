@@ -79,11 +79,11 @@ router.put("/:id", async (request, response) => {
 });
 
 //delete delivery details
-router.delete("/:userId", async (request, response) => {
+router.delete("/:id", async (request, response) => {
   try {
-    const { userId } = request.params;
+    const { id } = request.params;
 
-    const result = await DeliveryDetails.findOneAndDelete({ userId: userId });
+    const result = await DeliveryDetails.findByIdAndDelete(id);
 
     if (!result) {
       return response
