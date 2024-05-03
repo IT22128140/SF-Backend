@@ -28,7 +28,7 @@ const itemSchema = new mongoose.Schema({
   colors: [
     {
       type: String,
-      required: true,
+      required: false,
     },
   ],
   sizes: [

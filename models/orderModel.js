@@ -8,14 +8,13 @@ const orderSchema = new mongoose.Schema(
     },
     products: [
       {
-        productId: {
+        name: {
           type: String,
           required: true,
         },
-        quantity: {
+        price: {
           type: Number,
           required: true,
-          min: [1, 'Quantity can not be less then 1.']
         },
         color: {
           type: String,
@@ -25,11 +24,48 @@ const orderSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
+        quantity: {
+          type: Number,
+          required: true,
+        },
       },
     ],
-    deliveryDetails:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "DeliveryDetails",
+    deliveryDetails: {
+      firstName: {
+        type: String,
+        required: true,
+      },
+      lastName: {
+        type: String,
+        required: true,
+      },
+      contact: {
+        type: Number,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+      },
+      address: {
+        type: String,
+        required: true,
+      },
+      province: {
+        type: String,
+        required: true,
+      },
+      district: {
+        type: String,
+        required: true,
+      },
+      postalCode: {
+        type: String,
+        required: true,
+      },
+    },
+    total: {
+      type: Number,
       required: true,
     },
     paymentId: {
