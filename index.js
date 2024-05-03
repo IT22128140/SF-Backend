@@ -38,9 +38,9 @@ import MaintenanceRoute from './routes/MaintenanceRoute.js';
 
 
 //Ridmi
-
-
-
+import rmRequestRoute from './routes/rmRequestRoute.js';
+import rmDistributeRoute from './routes/rmDistributeRoute.js';
+import empPerformanceRoute from './routes/empPerformanceRoute.js';
 
 
 
@@ -140,9 +140,9 @@ app.use('/maintenance', MaintenanceRoute);
 
 
 //Ridmi
-
-
-
+app.use('/rmRequests', rmRequestRoute);
+app.use('/rmDistributes', rmDistributeRoute);
+app.use('/empPerformances', empPerformanceRoute);
 
 
 

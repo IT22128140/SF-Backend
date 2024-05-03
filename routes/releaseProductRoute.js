@@ -4,12 +4,11 @@ import { ReleaseProduct } from '../models/releaseProductModel.js';
 const router = express.Router();
 
 //Route for save a releaseProduct
-router.post('/add', async (request, response) =>{
+router.post('/', async (request, response) =>{
     try{
       if(
         !request.body.release_ID||
         !request.body.productCode||
-        !request.body.customerID||
         !request.body.releaseDate
       ) {
         return response.status(400).send({
@@ -19,7 +18,7 @@ router.post('/add', async (request, response) =>{
       const newReleaseProduct = {
         release_ID:request.body.release_ID,      
         productCode:request.body.productCode,
-        customerID: request.body.customerID,
+        //customerID: request.body.customerID,
         releaseDate: request.body.releaseDate,
       };
   
@@ -38,7 +37,10 @@ router.post('/add', async (request, response) =>{
     try{
       const releaseProducts = await ReleaseProduct.find({});
   
-      return response.status(200).json(releaseProducts);
+      return response.status(200).json({
+        count: releaseProducts.length,
+        data: releaseProducts
+      });
     }catch(error){
       console.log(error.message);
       response.status(500).send({message: error.message});
@@ -52,7 +54,10 @@ router.post('/add', async (request, response) =>{
       const { id } = request.params;
       const releaseProduct = await ReleaseProduct.findById(id);
   
-      return response.status(200).json(releaseProduct);
+      return response.status(200).json({
+        count: releaseProduct.length,
+        data: releaseProduct
+      });
     }catch(error){
       console.log(error.message);
       response.status(500).send({message: error.message});
@@ -65,7 +70,6 @@ router.post('/add', async (request, response) =>{
       if(
         !request.body.release_ID||
         !request.body.productCode||
-        !request.body.customerID||
         !request.body.releaseDate
       ) {
         return response.status(400).send({
@@ -74,7 +78,7 @@ router.post('/add', async (request, response) =>{
       }
   
       const { id } = request.params;
-      const result = await ReleaseProduct.findByIdAndUpdate(id);
+      const result = await ReleaseProduct.findByIdAndUpdate(id, request.body);
   
       if (!result){
         return response.status(404).json({message: "Not found"});
