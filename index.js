@@ -16,7 +16,7 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 //Varagan
-
+import FeedbackFormRoute from "./routes/FeedbackFormRoute.js";
 
 
 
@@ -64,7 +64,10 @@ import suppRawsRoute from "./routes/suppRawsRoute.js"
 
 
 //Gihan
-
+import salaryRouter from "./routes/salaryemp.js";
+import paymentRouter from "./routes/paymentcus.js";
+import editsalary from "./routes/editsalary.js"
+import chequeimage from "./routes/chequeimage.js";
 
 
 
@@ -87,7 +90,7 @@ import employeeStatusRoute from "./routes/employeeStatusRoute.js";
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import deliveryRoute from "./routes/deliveryDetailsRoute.js";
-
+import orderRoute from "./routes/orderRoute.js";
 
 
 
@@ -107,7 +110,7 @@ app.get("/", (req, res) => {
 
 //enter your routes under your name. don't add or delete empty spaces
 //Varagan
-
+app.use("/Feedback", FeedbackFormRoute);
 
 
 
@@ -167,6 +170,10 @@ app.use('/suppRM',suppRawsRoute);
 
 
 //Gihan
+app.use('/salary', salaryRouter);
+app.use('/payment', paymentRouter);
+app.use('/editsalary', editsalary);
+app.use('/uploads',chequeimage);
 
 
 
@@ -190,7 +197,7 @@ app.use("/employeeStatus", employeeStatusRoute);
 app.use("/items", itemsRoute);
 app.use("/cart", cartRoute);
 app.use("/deliveryDetails", deliveryRoute);
-
+app.use("/order", orderRoute);
 
 
 

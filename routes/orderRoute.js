@@ -3,14 +3,26 @@ import { Order } from "../models/orderModel.js";
 
 const router = express.Router();
 
+//get all orders
+router.get("/ongoing", async (request, response) => {
+  try {
+    const orders = await Order.find({ status: { $ne: "Completed" } });
+
+    return response.status(200).json(orders);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
 //Add order
 router.post("/", async (request, response) => {
   try {
-
     if (
       !request.body.userId ||
       !request.body.products ||
       !request.body.deliveryDetails ||
+      !request.body.total ||
       !request.body.paymentId
     ) {
       return response.status(400).send({ message: "All fields are required" });
@@ -19,6 +31,7 @@ router.post("/", async (request, response) => {
       userId: request.body.userId,
       products: request.body.products,
       deliveryDetails: request.body.deliveryDetails,
+      total: request.body.total,
       paymentId: request.body.paymentId,
     };
 
@@ -32,24 +45,12 @@ router.post("/", async (request, response) => {
 });
 
 //get order
-router.get("/:id", async (request, response) => {
+router.get("/:userId", async (request, response) => {
   try {
-    const { id } = request.params;
-    const order = await Order.find({ userId: id });
+    const { userId } = request.params;
+    const order = await Order.find({ userId: userId });
 
     return response.status(200).json(order);
-  } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
-  }
-});
-
-//get all orders
-router.get("/", async (request, response) => {
-  try {
-    const orders = await Order.find({});
-
-    return response.status(200).json(orders);
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
@@ -60,16 +61,16 @@ router.get("/", async (request, response) => {
 router.put("/", async (request, response) => {
   try {
     const { id } = request.body.orderId;
-    const result = await Order.findByIdAndUpdate( id, request.body);
+    const result = await Order.findByIdAndUpdate(id, request.body);
 
-    if(!result) {
+    if (!result) {
       return response.status(404).json({ message: "Order not found" });
     }
     return response.status(200).json({ message: "Order updated successfully" });
-    } catch (error) {
+  } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
-    }
+  }
 });
 
 export default router;

@@ -23,9 +23,7 @@ router.post("/", async (request, response) => {
       !request.body.category ||
       !request.body.description ||
       !request.body.image ||
-      !request.body.colors ||
-      !request.body.sizes ||
-      !request.body.trending
+      !request.body.sizes
     ) {
       return response.status(400).send({
         message: "All fields are required",
