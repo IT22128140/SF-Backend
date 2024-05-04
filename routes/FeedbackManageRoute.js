@@ -1,24 +1,47 @@
 import express from 'express';
-
+import { Feedback } from "../models/Feedback.js";
+import nodemailer from 'nodemailer';
 
 const router = express.Router();
 
-const feedbacks = [
-  { feedback: 'Great job!', rating: 5, name: 'John Doe', email: 'johndoe@example.com' },
-  { feedback: 'Very helpful', rating: 4, name: 'Jane Smith', email: 'janesmith@example.com' },
-  { feedback: 'Nice work', rating: 3, name: 'Alex Johnson', email: 'alexjohnson@example.com' }
-];
-
-// Route to get all feedbacks
-router.get('/feedbacks', (req, res) => {
-  res.json(feedbacks);
+// Route to get all feedbacks from the database
+router.get('/feedbacks', async (req, res) => {
+  try {
+    const feedbacks = await Feedback.find();
+    res.json(feedbacks);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Route to contact a user based on their feedback
-router.post('/contact', (req, res) => {
+router.post('/contact', async (req, res) => {
   const { name, email } = req.body;
-  // need to add your logic here to handle contacting the user
-  res.json({ message: `Contacting ${name} at ${email} regarding their feedback` });
+
+  // Create a transporter for sending emails
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'your_email@gmail.com',
+      pass: 'your_email_password'
+    }
+  });
+
+  // Define the email options
+  const mailOptions = {
+    from: 'your_email@gmail.com',
+    to: email,
+    subject: 'Feedback Received',
+    text: `Hello ${name},\n\nThank you for providing your feedback. We appreciate your input.`
+  };
+
+  try {
+    // Send the email
+    await transporter.sendMail(mailOptions);
+    res.json({ message: `Contacting ${name} at ${email} regarding their feedback` });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 export default router;

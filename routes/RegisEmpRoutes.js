@@ -5,12 +5,7 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
   try {
-    const { FirstName, LastName, emailAddress, phoneNumber, password, password2, employeeType } = req.body; // Added employeeType destructuring
-
-    // Check if passwords match
-    if (password !== password2) {
-      return res.status(400).json({ message: 'Passwords do not match' });
-    }
+    const { FirstName, LastName, emailAddress, phoneNumber, password, employeeType } = req.body;
 
     // Create a new user using the RegisEmp model
     const newUser = new RegisEmp({
@@ -21,10 +16,10 @@ router.post('/register', async (req, res) => {
       employeeType,
       password
     });
-    
+
     // Save the user to the database
     const savedUser = await newUser.save();
-    
+
     res.status(201).json(savedUser);
   } catch (error) {
     console.error(error);
