@@ -21,11 +21,7 @@ const RegisCusModelSchema = mongoose.Schema({
       password: {
         type: String,
         required: true
-      },
-      password2: {
-        type: String,
-        required: true
-      },
+      }
   });
   
   export const RegisCus = mongoose.model('RegisCus', RegisCusModelSchema);
