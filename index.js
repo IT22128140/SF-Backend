@@ -13,8 +13,16 @@ import cors from "cors";
 
 
 //Varagan
-import FeedbackFormRoute from "./routes/FeedbackFormRoute.js"; 
-
+import FeedbackFormRoutes from "./routes/FeedbackFormRoutes.js";
+import FeedbackManageRoutes from "./routes/FeedbackManageRoutes.js";
+import LoginCusRoutes from "./routes/LoginCusRoutes.js";
+import LoginEmpRoutes from "./routes/LoginEmpRoutes.js";
+import RegisCusRoutes from "./routes/RegisCusRoutes.js";
+import RegisEmpRoutes from "./routes/RegisEmpRoutes.js";
+import ProfileCusRoutes from "./routes/ProfileCusRoutes.js";
+import ProfileEmpRoutes from "./routes/ProfileEmpRoutes.js";
+import EditProfileCusRoutes from "./routes/EditProfileCusRoutes.js";
+import EditProfileEmpRoutes from "./routes/EditProfileEmpRoutes.js";
 
 
 
@@ -82,7 +90,16 @@ app.get("/", (req, res) => {
 
 //enter your routes under your name. don't add or delete empty spaces
 //Varagan
-app.use("/Feedback", FeedbackFormRoute);
+app.use("/Feedback", FeedbackFormRoutes);
+app.use("/Feedback", FeedbackManageRoutes);
+app.use("/RegisCusModel", LoginCusRoutes);
+app.use("/RegisCusModel", RegisCusRoutes);
+app.use("/RegisCusModel", ProfileCusRoutes);
+app.use("/RegisCusModel", EditProfileCusRoutes);
+app.use("/RegisEmpModel", LoginEmpRoutes);
+app.use("/RegisEmpModel", RegisEmpRoutes);
+app.use("/RegisEmpModel", ProfileEmpRoutes);
+app.use("/RegisEmpModel", EditProfileEmpRoutes);
 
 
 
