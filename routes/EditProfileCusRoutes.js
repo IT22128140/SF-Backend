@@ -1,5 +1,5 @@
 import express from 'express';
-import RegisCus from '../models/RegisCusModel.js';
+import { RegisCus } from '../models/RegisCusModel.js';
 
 const router = express.Router();
 

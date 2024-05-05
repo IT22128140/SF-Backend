@@ -1,5 +1,5 @@
 import express from 'express';
-import RegisEmp from '../models/RegisEmpModel.js';
+import { RegisEmp } from '../models/RegisEmpModel.js';
 
 const router = express.Router();
 
