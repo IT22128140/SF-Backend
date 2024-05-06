@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', async (request,response) => {
     try{
       if(
-        !request.body.requestID ||
+        !request.body.materialID ||
         !request.body.materialType||
         !request.body.colorAndDesign ||
         !request.body.initialquantity ||
@@ -22,7 +22,7 @@ router.post('/', async (request,response) => {
       }
   
       const RMS ={
-        requestID : request.body.requestID,
+        materialID : request.body.materialID,
         materialType: request.body.materialType,
         colorAndDesign: request.body.colorAndDesign,
         initialquantity: request.body.initialquantity,
@@ -44,23 +44,23 @@ router.post('/', async (request,response) => {
   // Route handler to retrieve all suppliers
   router.get('/', async (request, response) => {
     try {
-      const Rmstk = await RM.find({});                            // Finding all suppliers in the database
-      return response.status(206).send(Rmstk);                     // Sending the retrieved suppliers as a response
+      const Rmstk = await RM.find({});                            
+      return response.status(206).send(Rmstk);                
     } catch (error) {
-      console.log(error.message);                                 // Logging any errors
-      response.status(501).send({ message: error.message });      // Sending an error response
+      console.log(error.message);                                
+      response.status(501).send({ message: error.message });      
     }
   });
   
   // Route handler to retrieve a specific supplier by ID
   router.get('/:id', async (request, response) => {
     try {
-      const { id } = request.params;                              // Extracting the ID parameter from the request
-      const Rmstk = await RM.findById(id);                       // Finding the supplier by ID in the database
-      return response.status(206).send(Rmstk);                    // Sending the retrieved supplier as a response
+      const { id } = request.params;                              
+      const Rmstk = await RM.findById(id);                       
+      return response.status(206).send(Rmstk);                    
     } catch (error) {
-      console.log(error.message);                                 // Logging any errors
-      response.status(500).send({ message: error.message });     // Sending an error response
+      console.log(error.message);                               
+      response.status(500).send({ message: error.message });     
     }
   });
   
@@ -71,7 +71,7 @@ router.put('/:id', async (request, response) => {
       // Checking if all required fields are provided in the request body
       if (
         
-        !request.body.requestID ||
+        !request.body.materialID ||
         !request.body.materialType||
         !request.body.colorAndDesign ||
         !request.body.initialquantity ||
