@@ -14,7 +14,6 @@ router.post('/', async (request,response) => {
         !request.body.costperunit ||
         !request.body.restockingdate ||
         !request.body.availablequantity 
-        
       ){
         return response.status(400).send({
           message: 'send all required fields',
@@ -29,7 +28,7 @@ router.post('/', async (request,response) => {
         costperunit: request.body.costperunit,
         restockingdate: request.body.restockingdate,
         availablequantity: request.body.availablequantity
-        
+
       };
        
        const RawM = await RM.create(RMS); 

@@ -3,18 +3,53 @@ import { PartShortage } from "../models/MPRShortagesModel.js";
 
 const router = express.Router();
 
+//Route for getting Pending repairs
+router.get('/pending', async (request, response) => {
+  try {
+    
+    const pendingShortages = await PartShortage.find({ Status: "Pending" });
+
+    return response.status(200).json({
+      count: pendingShortages.length,
+      data: pendingShortages
+    });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+
+//Route for getting Accepted repairs
+router.get('/accepted', async (request, response) => {
+  try {
+    
+    const acceptedShortages = await PartShortage.find({ Status: "Accepted" });
+
+    return response.status(200).json({
+      count: acceptedShortages.length,
+      data: acceptedShortages
+    });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+
 //Route for save a new Shoetage Request
 router.post('/', async(request, response) => {
 
     try {
       if(
         !request.body.RequestID ||
-        !request.body.PartID ||
+        !request.body.Requested||
         !request.body.PartName ||
         !request.body.Description ||
         !request.body.Quantity ||
         !request.body.Condition ||
-        !request.body.NeededBeforeDate     
+        !request.body.NeededBeforeDate||
+        !request.body.Status   
     ){
         return response.status(404).send({
           message: 'Send all required fields of the table',
@@ -22,12 +57,13 @@ router.post('/', async(request, response) => {
       }
       const newShortage = {
         RequestID: request.body.RequestID,
-        PartID: request.body.PartID,
+        Requested: request.body.Requested,
         PartName: request.body.PartName,
         Description: request.body.Description,
         Quantity: request.body.Quantity,
         Condition: request.body.Condition,
         NeededBeforeDate: request.body.NeededBeforeDate,
+        Status: request.body.Status,
       };
   
       const shortage = await PartShortage.create(newShortage);
@@ -75,12 +111,13 @@ router.post('/', async(request, response) => {
     try {
       if(
         !request.body.RequestID ||
-        !request.body.PartID ||
+        !request.body.Requested||
         !request.body.PartName ||
         !request.body.Description ||
         !request.body.Quantity ||
         !request.body.Condition ||
-        !request.body.NeededBeforeDate
+        !request.body.NeededBeforeDate ||
+        !request.body.Status
       ) {
         return response.status(400).send({
           message: 'Send all required fields:',

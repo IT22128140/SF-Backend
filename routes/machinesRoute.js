@@ -3,7 +3,27 @@ import { Machine } from "../models/machinesModes.js";
 
 const router = express.Router();
 
+// Route to retrieve repair details within a date range
+router.get('/range', async (req, res) => {
+  try {
+    // Parse start and end dates from request query parameters
+    const { startDate, endDate } = req.query;
 
+    // Query the database for repair records within the specified date range
+    const machines = await Machine.find({
+      PurchasedDate: {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      },
+    });
+
+    // Return the retrieved repair details as a response
+    res.status(200).json(machines);
+  } catch (error) {
+    console.error('Error retrieving repair details:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 //Route for save a new Machine
 router.post('/', async(request, response) => {
@@ -15,7 +35,6 @@ router.post('/', async(request, response) => {
         !request.body.PurchasedDate ||
         !request.body.Condition ||
         !request.body.Cost ||
-        !request.body.Quantity ||
         !request.body.Manufacturer ||
         !request.body.Category
       ){
@@ -29,7 +48,6 @@ router.post('/', async(request, response) => {
         PurchasedDate: request.body.PurchasedDate,
         Condition: request.body.Condition,
         Cost: request.body.Cost,
-        Quantity: request.body.Quantity,
         Manufacturer: request.body.Manufacturer,
         Category: request.body.Category,
       };
@@ -83,7 +101,6 @@ router.post('/', async(request, response) => {
         !request.body.PurchasedDate ||
         !request.body.Condition ||
         !request.body.Cost ||
-        !request.body.Quantity ||
         !request.body.Manufacturer ||
         !request.body.Category
       ) {

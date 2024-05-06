@@ -23,11 +23,6 @@ const machinesSchema = mongoose.Schema(
         },
     
         Cost: {
-            type: String,
-            required: true,
-        },
-    
-        Quantity: {
             type: Number,
             required: true,
         },
@@ -40,7 +35,7 @@ const machinesSchema = mongoose.Schema(
         Category: {
             type: String,
             required: true,
-        },
+        }
     
     },
     {
