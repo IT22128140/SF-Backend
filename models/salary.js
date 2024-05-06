@@ -2,16 +2,28 @@ import mongoose from "mongoose";
 
 const salarySchema =  mongoose.Schema(
     {
-      name: {
+      lastName: {
          type: String,
          required: true,
      },
+     employeeID: {
+        type: String,
+        required: true,
+      },
   
-    time: {
+    // time: {
+    //     type: String,
+    //     required: true,
+    // },
+    firstName: {
         type: String,
         required: true,
     },
-    fullName: {
+    contactNo: {
+        type: Number,
+        required: true,
+    },
+    email: {
         type: String,
         required: true,
     },
@@ -35,18 +47,22 @@ const salarySchema =  mongoose.Schema(
         type: Number,
         required: true,
     },
-    notice: {
-        type: String,
-        required: true,
-    },
-    cheques: {
-        type: String,
-        required: true,
-    },
-    profile: {
-        type: String,
-        required: true,
-    },
+    // notice: {
+    //     type: String,
+    //     required: false,
+    // },
+    // cheque1: {
+    //     type: String,
+    //     required: false,
+    // },
+    // cheque2: {
+    //     type: String,
+    //     required: false,
+    // },
+    // profile: {
+    //     type: String,
+    //     required: false,
+    // },
     },
     {
         timestamps: true,
