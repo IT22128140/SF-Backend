@@ -92,6 +92,7 @@ app.get("/", (req, res) => {
 //Varagan
 app.use("/feedback", FeedbackFormRoutes);
 app.use("/feedbacks", FeedbackManageRoutes);
+app.use("/contact", FeedbackManageRoutes);
 app.use("/LoginCus", LoginCusRoutes);
 app.use("/RegisCus", RegisCusRoutes);
 app.use("/ProfileCus", ProfileCusRoutes);
