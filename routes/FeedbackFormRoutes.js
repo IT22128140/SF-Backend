@@ -21,14 +21,4 @@ router.post('/feedback', async (req, res) => {
   }
 });
 
-router.get('/feedbacks', async (req, res) => {
-  try {
-    const feedbacks = await Feedback.find();
-    res.json(feedbacks);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Failed to get feedbacks' });
-  }
-});
-
 export default router;
