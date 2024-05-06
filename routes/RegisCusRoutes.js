@@ -3,7 +3,7 @@ import { RegisCus } from '../models/RegisCusModel.js';
 
 const router = express.Router();
 
-router.post('/register', async (req, res) => {
+router.post('/RegisCus', async (req, res) => {
   try {
     const { FirstName, LastName, emailAddress, phoneNumber, password } = req.body;
 

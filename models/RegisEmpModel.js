@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const RegisEmpSchema = mongoose.Schema({
-  firstName: {
+  FirstName: {
     type: String,
     required: true,
   },
-  lastName: {
+  LastName: {
     type: String,
     required: true,
   },

@@ -21,8 +21,8 @@ import RegisCusRoutes from "./routes/RegisCusRoutes.js";
 import RegisEmpRoutes from "./routes/RegisEmpRoutes.js";
 import ProfileCusRoutes from "./routes/ProfileCusRoutes.js";
 import ProfileEmpRoutes from "./routes/ProfileEmpRoutes.js";
-import EditProfileCusRoutes from "./routes/EditProfileCusRoutes.js";
-import EditProfileEmpRoutes from "./routes/EditProfileEmpRoutes.js";
+//import EditProfileCusRoutes from "./routes/EditProfileCusRoutes.js";
+//import EditProfileEmpRoutes from "./routes/EditProfileEmpRoutes.js";
 
 
 
@@ -90,16 +90,16 @@ app.get("/", (req, res) => {
 
 //enter your routes under your name. don't add or delete empty spaces
 //Varagan
-app.use("/Feedback", FeedbackFormRoutes);
-app.use("/Feedback", FeedbackManageRoutes);
-app.use("/RegisCusModel", LoginCusRoutes);
-app.use("/RegisCusModel", RegisCusRoutes);
-app.use("/RegisCusModel", ProfileCusRoutes);
-app.use("/RegisCusModel", EditProfileCusRoutes);
-app.use("/RegisEmpModel", LoginEmpRoutes);
-app.use("/RegisEmpModel", RegisEmpRoutes);
-app.use("/RegisEmpModel", ProfileEmpRoutes);
-app.use("/RegisEmpModel", EditProfileEmpRoutes);
+app.use("/feedback", FeedbackFormRoutes);
+app.use("/feedbacks", FeedbackManageRoutes);
+app.use("/LoginCus", LoginCusRoutes);
+app.use("/RegisCus", RegisCusRoutes);
+app.use("/ProfileCus", ProfileCusRoutes);
+//app.use("/RegisCusModel", EditProfileCusRoutes);
+app.use("/LoginEmp", LoginEmpRoutes);
+app.use("/RegisEmp", RegisEmpRoutes);
+app.use("/ProfileEmp", ProfileEmpRoutes);
+//app.use("/RegisEmpModel", EditProfileEmpRoutes);
 
 
 
