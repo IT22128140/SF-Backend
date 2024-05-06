@@ -29,6 +29,10 @@ const paymentSchema =  mongoose.Schema(
         type: String,
         required:true,
     },
+    slip:{
+        type: String,
+        required:true,
+    },
     
     },
     {
