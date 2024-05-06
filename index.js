@@ -21,8 +21,8 @@ import RegisCusRoutes from "./routes/RegisCusRoutes.js";
 import RegisEmpRoutes from "./routes/RegisEmpRoutes.js";
 import ProfileCusRoutes from "./routes/ProfileCusRoutes.js";
 import ProfileEmpRoutes from "./routes/ProfileEmpRoutes.js";
-//import EditProfileCusRoutes from "./routes/EditProfileCusRoutes.js";
-//import EditProfileEmpRoutes from "./routes/EditProfileEmpRoutes.js";
+import EditProfileCusRoutes from "./routes/EditProfileCusRoutes.js";
+import EditProfileEmpRoutes from "./routes/EditProfileEmpRoutes.js";
 
 
 
@@ -95,11 +95,16 @@ app.use("/feedbacks", FeedbackManageRoutes);
 app.use("/LoginCus", LoginCusRoutes);
 app.use("/RegisCus", RegisCusRoutes);
 app.use("/ProfileCus", ProfileCusRoutes);
-//app.use("/RegisCusModel", EditProfileCusRoutes);
+app.use("/ProfileCus", EditProfileCusRoutes);
+app.use("/ProfileCus/save", EditProfileCusRoutes);
+app.use("/ProfileCus/delete", EditProfileCusRoutes);
 app.use("/LoginEmp", LoginEmpRoutes);
 app.use("/RegisEmp", RegisEmpRoutes);
 app.use("/ProfileEmp", ProfileEmpRoutes);
-//app.use("/RegisEmpModel", EditProfileEmpRoutes);
+app.use("/ProfileEmp", EditProfileEmpRoutes);
+app.use("/ProfileEmp/save", EditProfileEmpRoutes);
+app.use("/ProfileEmp/delete", EditProfileEmpRoutes);
+
 
 
 
