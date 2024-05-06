@@ -54,41 +54,27 @@ router.post('/', async (request,response) => {
     try {
       const { id } = request.params;                             
       const mps = await MP.findById(id);                       
-      return response.status(206).send(Rmstk);                    
+      return response.status(206).send(mps);                    
     } catch (error) {
-      console.log(error.message);                                 // Logging any errors
-      response.status(500).send({ message: error.message });     // Sending an error response
+      console.log(error.message);                                 
+      response.status(500).send({ message: error.message });     
     }
   });
   
 
-
-router.put('/:id', async (request, response) => {
+  router.put('/:id', async (req, res) => {
     try {
-      // Checking if all required fields are provided in the request body
-      if (
-        !request.body.partID ||
-        !request.body.partName||
-        !request.body.purchasedDate ||
-        !request.body.condition ||
-        !request.body.costPerUnit ||
-        !request.body.quantity ||
-        !request.body.manufacturer 
-      ) {
-        return response.status(400).send({ message: 'Send all required fields' });
-      }
-  
-      const { id } = request.params;                                                    // Extracting the ID parameter from the request
-      const results = await MP.findByIdAndUpdate(id, request.body);                    
-      if (!results) {
-        return response.status(404).json({ message: 'MP not found' });           
-      }
-      return response.status(200).send({ message: "MP updated successfully" });    // Sending a success response
+        const { id } = req.params;
+        const updatedPart = await MP.findByIdAndUpdate(id, req.body, { new: true });
+        if (!updatedPart) {
+            return res.status(404).json({ message: 'Machine part not found' });
+        }
+        return res.status(200).send({ message: 'Machine part updated successfully', updatedPart });
     } catch (error) {
-      console.log(error.message);                                                      // Logging any errors
-      response.status(500).send({ message: error.message });                            // Sending an error response
+        console.error(error.message);
+        return res.status(500).send({ message: 'Internal Server Error' });
     }
-  });
+});
 
 
   router.delete('/:id', async (request, response) => {
@@ -98,10 +84,10 @@ router.put('/:id', async (request, response) => {
       if (!MPDlt) {
         return response.status(404).json({ message: 'MP not found' });            
       }
-      return response.status(200).send({ message: "MP removed successfully" });   // Sending a success response
+      return response.status(200).send({ message: "MP removed successfully" });   
     } catch (error) {
-      console.log(error.message);                                                      // Logging any errors
-      response.status(500).send({ message: error.message });                           // Sending an error response
+      console.log(error.message);                                                      
+      response.status(500).send({ message: error.message });                           
     }
   });
   

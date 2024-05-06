@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const AvailableRMS = mongoose.Schema(
      {
         
-        requestID: {
+        materialID: {
             type: String,
             required: true,
         },
