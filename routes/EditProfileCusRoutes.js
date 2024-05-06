@@ -4,7 +4,7 @@ import { RegisCus } from '../models/RegisCusModel.js';
 const router = express.Router();
 
 // route to get profile information
-router.get('/ProfileCus', async (req, res) => {
+router.get('/EditProfileCus', async (req, res) => {
   try {
     const userId = req.userId;
     
@@ -29,7 +29,7 @@ router.get('/ProfileCus', async (req, res) => {
   }
 });
 // Route to save profile information
-router.post('/ProfileCus/save', async (req, res) => {
+router.post('/EditProfileCus/save', async (req, res) => {
   try {
     const { FirstName, LastName, emailAddress, phoneNumber, password } = req.body;
     const userId = req.userId;
@@ -58,7 +58,7 @@ router.post('/ProfileCus/save', async (req, res) => {
 });
 
 // Route to delete the profile
-router.delete('/ProfileCus/delete', async (req, res) => {
+router.delete('/EditProfileCus/delete', async (req, res) => {
   try {
     const userId = req.userId; 
 

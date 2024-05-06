@@ -95,15 +95,15 @@ app.use("/feedbacks", FeedbackManageRoutes);
 app.use("/LoginCus", LoginCusRoutes);
 app.use("/RegisCus", RegisCusRoutes);
 app.use("/ProfileCus", ProfileCusRoutes);
-app.use("/ProfileCus", EditProfileCusRoutes);
-app.use("/ProfileCus/save", EditProfileCusRoutes);
-app.use("/ProfileCus/delete", EditProfileCusRoutes);
+app.use("/EditProfileCus", EditProfileCusRoutes);
+app.use("/EditProfileCus/save", EditProfileCusRoutes);
+app.use("/EditProfileCus/delete", EditProfileCusRoutes);
 app.use("/LoginEmp", LoginEmpRoutes);
 app.use("/RegisEmp", RegisEmpRoutes);
 app.use("/ProfileEmp", ProfileEmpRoutes);
-app.use("/ProfileEmp", EditProfileEmpRoutes);
-app.use("/ProfileEmp/save", EditProfileEmpRoutes);
-app.use("/ProfileEmp/delete", EditProfileEmpRoutes);
+app.use("/EditProfileEmp", EditProfileEmpRoutes);
+app.use("/EditProfileEmp/save", EditProfileEmpRoutes);
+app.use("/EditProfileEmp/delete", EditProfileEmpRoutes);
 
 
 

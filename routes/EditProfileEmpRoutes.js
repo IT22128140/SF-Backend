@@ -3,7 +3,7 @@ import { RegisEmp } from '../models/RegisEmpModel.js';
 
 const router = express.Router();
 // route to get profile information
-router.get('/ProfileEmp', async (req, res) => {
+router.get('/EditProfileEmp', async (req, res) => {
   try {
     const userId = req.userId;
     
@@ -29,7 +29,7 @@ router.get('/ProfileEmp', async (req, res) => {
   }
 });
 // Route to save profile information
-router.post('/ProfileEmp/save', async (req, res) => {
+router.post('/EditProfileEmp/save', async (req, res) => {
   try {
     const { firstName, lastName, emailAddress, phoneNumber, employeeType, password } = req.body;
     const userId = req.userId; 
@@ -59,7 +59,7 @@ router.post('/ProfileEmp/save', async (req, res) => {
 });
 
 // Route to delete the profile
-router.delete('/ProfileEmp/delete', async (req, res) => {
+router.delete('/EditProfileEmp/delete', async (req, res) => {
   try {
     const userId = req.userId; 
 
