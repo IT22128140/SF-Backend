@@ -8,33 +8,41 @@ const router = express.Router();
 router.post('/', async (request, response) => {
     try {
       if (
-        !request.body.name ||
-        !request.body.time ||
-        !request.body.fullName ||
+        !request.body.lastName ||
+        !request.body.employeeID ||
+        // !request.body.time ||
+        !request.body.firstName ||
+        !request.body.contactNo ||
+        !request.body.email ||
         !request.body.basicSalary ||
         !request.body.attendance ||
         !request.body.overtime ||
         !request.body.bonus ||
-        !request.body.totalAmount ||
-        !request.body.notice ||
-        !request.body.cheques ||
-        !request.body.profile
+        !request.body.totalAmount
+        // !request.body.notice ||
+        // !request.body.cheque1 ||
+        // !request.body.cheque2 ||
+        // !request.body.profile
       ) {
-        return response.status(404).send({
+        return response.status(500).send({
           message: "send all required fields of the table",});
       }
       const newSalary ={
-        name: request.body.name,
-        time: request.body.time,
-        fullName: request.body.fullName,
+        lastName: request.body.lastName,
+        employeeID: request.body.employeeID,
+        // time: request.body.time,
+        firstName: request.body.firstName,
+        contactNo: request.body.contactNo,
+        email: request.body.email,
         basicSalary: request.body.basicSalary,
         attendance: request.body.attendance,
         overtime: request.body.overtime,
         bonus: request.body.bonus,
         totalAmount: request.body.totalAmount,
-        notice: request.body.notice,
-        cheques: request.body.cheques,
-        profile: request.body.profile,
+        // notice: request.body.notice,
+        // cheques: request.body.cheque1,
+        // cheque2: request.body.cheque2,
+        // profile: request.body.profile,
       };
       const salary = await Salary.create(newSalary);
       return response.status(201).send(salary);
@@ -78,9 +86,10 @@ router.post('/', async (request, response) => {
         try {
           if(
             
-            !request.body.basicSalary ||
+            
             !request.body.attendance ||
             !request.body.overtime ||
+            !request.body.totalAmount ||
             !request.body.bonus
             
           ) {
@@ -91,9 +100,10 @@ router.post('/', async (request, response) => {
           const { id } = request.params;
           
           const data = {
-            basicSalary: request.body.basicSalary,
+            
             attendance: request.body.attendance,
             overtime: request.body.overtime,
+            totalAmount: request.body.totalAmount,
             bonus: request.body.bonus
           }
 
