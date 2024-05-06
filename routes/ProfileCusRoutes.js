@@ -3,9 +3,9 @@ import { RegisEmp } from '../models/RegisEmpModel.js';
 
 const router = express.Router();
 
-router.get('/profile', async (req, res) => {
+router.get('/ProfileCus', async (req, res) => {
   try {
-    const userId = req.userId; // Assuming you have a middleware to extract the user ID from the request
+    const userId = req.userId;
     
     const user = await RegisEmp.findById(userId);
     
