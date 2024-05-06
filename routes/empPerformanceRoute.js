@@ -25,6 +25,7 @@ router.post('/', async (request,response) => {
     try{
       if(   //validations to confirm all the required fields are filled
         !request.body.EmployeeID ||
+        !request.body.EmployeeName ||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
         !request.body.StandardMinuteValue||
@@ -37,6 +38,7 @@ router.post('/', async (request,response) => {
       }
       const newempPerformance = {
         EmployeeID : request.body.EmployeeID,
+        EmployeeName : request.body.EmployeeName,
         LineNumber : request.body.LineNumber,
         PositionNumber : request.body.PositionNumber,
         StandardMinuteValue : request.body.StandardMinuteValue,
@@ -90,6 +92,7 @@ router.put('/:id', async (request, response) =>{
     try{
       if(
         !request.body.EmployeeID ||
+        !request.body.EmployeeName ||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
         !request.body.StandardMinuteValue||
