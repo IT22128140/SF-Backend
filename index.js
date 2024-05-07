@@ -92,19 +92,15 @@ app.get("/", (req, res) => {
 //Varagan
 app.use("/feedback", FeedbackFormRoutes);
 app.use("/feedbacks", FeedbackManageRoutes);
-app.use("/contact", FeedbackManageRoutes);
 app.use("/LoginCus", LoginCusRoutes);
 app.use("/RegisCus", RegisCusRoutes);
 app.use("/ProfileCus", ProfileCusRoutes);
 app.use("/EditProfileCus", EditProfileCusRoutes);
-app.use("/EditProfileCus/save", EditProfileCusRoutes);
-app.use("/EditProfileCus/delete", EditProfileCusRoutes);
 app.use("/LoginEmp", LoginEmpRoutes);
 app.use("/RegisEmp", RegisEmpRoutes);
 app.use("/ProfileEmp", ProfileEmpRoutes);
 app.use("/EditProfileEmp", EditProfileEmpRoutes);
-app.use("/EditProfileEmp/save", EditProfileEmpRoutes);
-app.use("/EditProfileEmp/delete", EditProfileEmpRoutes);
+
 
 
 

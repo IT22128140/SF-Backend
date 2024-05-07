@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer';
 const router = express.Router();
 
 // Route to get all feedbacks from the database
-router.get('/feedbacks', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const feedbacks = await Feedback.find();
     res.json(feedbacks);
@@ -15,7 +15,7 @@ router.get('/feedbacks', async (req, res) => {
 });
 
 // Route to contact a user based on their feedback
-router.post('/contact', async (req, res) => {
+router.post('/', async (req, res) => {
   const { name, email } = req.body;
 
   // Create a transporter for sending emails

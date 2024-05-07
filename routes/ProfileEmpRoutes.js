@@ -3,7 +3,7 @@ import { RegisEmp } from '../models/RegisEmpModel.js';
 
 const router = express.Router();
 
-router.get('/ProfileEmp', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const userId = req.userId;
     

@@ -3,7 +3,7 @@ import { Feedback } from "../models/Feedback.js";
 
 const router = express.Router();
 
-router.post('/feedback', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { name, email, feedback, rating, image } = req.body;
     const newFeedback = new Feedback({

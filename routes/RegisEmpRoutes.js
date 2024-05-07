@@ -3,7 +3,7 @@ import { RegisEmp } from '../models/RegisEmpModel.js';
 
 const router = express.Router();
 
-router.post('/RegisEmp', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { FirstName, LastName, emailAddress, phoneNumber, password, employeeType } = req.body;
 
