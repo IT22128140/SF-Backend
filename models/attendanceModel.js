@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { boolean } from "webidl-conversions";
 
 const attendanceSchema = mongoose.Schema(
     {
@@ -9,7 +10,27 @@ const attendanceSchema = mongoose.Schema(
         status: {
             type: String,
             required: true,
-            // defualt: "Present"
+            defualt: "Absent"
+        },
+        date: {
+            type: Date,
+            required: true
+        },
+        arrivalTime: {
+            type: String,
+            required: true
+        },
+        departureTime: {
+            type: String,
+            required: false
+        },
+        overTimeHours: {
+            type: Number,
+            required: false
+        },
+        late: {
+            type: Boolean,
+            required: true
         }
     },
     {   

@@ -6,6 +6,10 @@ const empPerformanceSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        EmployeeName: {
+            type: String,
+            required: true,
+        },
         LineNumber: {
             type: String,
             required: true,
