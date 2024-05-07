@@ -10,7 +10,7 @@ router.post('/', async (request, response) => {
       if (
         !request.body.lastName ||
         !request.body.employeeID ||
-        // !request.body.time ||
+        !request.body.date ||
         !request.body.firstName ||
         !request.body.contactNo ||
         !request.body.email ||
@@ -18,9 +18,9 @@ router.post('/', async (request, response) => {
         !request.body.attendance ||
         !request.body.overtime ||
         !request.body.bonus ||
-        !request.body.totalAmount
-        // !request.body.notice ||
-        // !request.body.cheque1 ||
+        !request.body.totalAmount||
+        !request.body.notice 
+        // !request.body.cheque1 
         // !request.body.cheque2 ||
         // !request.body.profile
       ) {
@@ -30,7 +30,7 @@ router.post('/', async (request, response) => {
       const newSalary ={
         lastName: request.body.lastName,
         employeeID: request.body.employeeID,
-        // time: request.body.time,
+        date: request.body.date,
         firstName: request.body.firstName,
         contactNo: request.body.contactNo,
         email: request.body.email,
@@ -39,7 +39,7 @@ router.post('/', async (request, response) => {
         overtime: request.body.overtime,
         bonus: request.body.bonus,
         totalAmount: request.body.totalAmount,
-        // notice: request.body.notice,
+        notice: request.body.notice,
         // cheques: request.body.cheque1,
         // cheque2: request.body.cheque2,
         // profile: request.body.profile,
@@ -90,6 +90,9 @@ router.post('/', async (request, response) => {
             !request.body.attendance ||
             !request.body.overtime ||
             !request.body.totalAmount ||
+            // !request.body.cheque1||
+            !request.body.date ||
+            !request.body.notice ||
             !request.body.bonus
             
           ) {
@@ -104,6 +107,10 @@ router.post('/', async (request, response) => {
             attendance: request.body.attendance,
             overtime: request.body.overtime,
             totalAmount: request.body.totalAmount,
+            // cheque1: request.body.cheque1,
+            date: request.body.date,
+            notice: request.body.notice,
+
             bonus: request.body.bonus
           }
 
