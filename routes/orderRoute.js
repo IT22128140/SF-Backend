@@ -3,10 +3,22 @@ import { Order } from "../models/orderModel.js";
 
 const router = express.Router();
 
-//get all orders
+//get all ongoing orders
 router.get("/ongoing", async (request, response) => {
   try {
-    const orders = await Order.find({ status: { $ne: "Completed" } });
+    const orders = await Order.find({ status: { $ne: "Delivered" } });
+
+    return response.status(200).json(orders);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+//get all completed orders
+router.get("/completed", async (request, response) => {
+  try {
+    const orders = await Order.find({ status: "Delivered" });
 
     return response.status(200).json(orders);
   } catch (error) {
@@ -58,10 +70,10 @@ router.get("/:userId", async (request, response) => {
 });
 
 //update order
-router.put("/", async (request, response) => {
+router.put("/:userId", async (request, response) => {
   try {
-    const { id } = request.body.orderId;
-    const result = await Order.findByIdAndUpdate(id, request.body);
+    const { userId } = request.params;
+    const result = await Order.findByIdAndUpdate(userId, request.body);
 
     if (!result) {
       return response.status(404).json({ message: "Order not found" });
