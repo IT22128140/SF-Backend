@@ -53,7 +53,7 @@ const repairsSchema = mongoose.Schema(
         ],
            
         CompletedDate: {
-         type: String,
+         type: Date,
          required: true,
         },
     
