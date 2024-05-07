@@ -37,7 +37,7 @@ router.get('/accepted', async (request, response) => {
 });
 
 
-//Route for save a new Shoetage Request
+//Route for save a new Shortage Request
 router.post('/', async(request, response) => {
 
     try {

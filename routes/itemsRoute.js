@@ -18,6 +18,7 @@ router.get("/trending", async (request, response) => {
 router.post("/", async (request, response) => {
   try {
     if (
+      !request.body.productId ||
       !request.body.name ||
       !request.body.price ||
       !request.body.category ||
@@ -30,6 +31,7 @@ router.post("/", async (request, response) => {
       });
     }
     const newItem = {
+      productId: request.body.productId,
       name: request.body.name,
       description: request.body.description,
       price: request.body.price,

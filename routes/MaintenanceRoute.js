@@ -46,6 +46,7 @@ router.post('/', async(request, response) => {
 
     try {
       if(
+        !request.body.MaintenanceID||
         !request.body.Date ||
         !request.body.MachineID ||
         !request.body.MachineName ||
@@ -69,7 +70,7 @@ router.post('/', async(request, response) => {
 
     // Validate each machine part object in the array
     for (const part of request.body.Machineparts) {
-      if (!part.PartID || !part.partName || !part.condition || !part.quantity) {
+      if (!part.PartID || !part.partName || !part.condition ) {
         return response.status(400).send({
           message: 'Each part must have an partID and part Name',
         });
@@ -77,6 +78,7 @@ router.post('/', async(request, response) => {
     }
 
       const newMaintenance = {
+        MaintenanceID: request.body.MaintenanceID,
         Date: request.body.Date,
         MachineID: request.body.MachineID,
         MachineName: request.body.MachineName,
@@ -96,6 +98,96 @@ router.post('/', async(request, response) => {
       response.status(500).send({message: error.message});
     }
   });
+
+
+  //Route for Get All Maintenance from database
+  
+  router.get('/', async(request, response) => {
+    try {
+      const maintenance = await Maintenance.find({});
+      
+      return response.status(200).json({
+        count: maintenance.length,
+        data: maintenance
+      });
+    } catch (error) {
+      console.log(error.message);
+      response.status(500).send({message: error.message});
+    }
+  });
+
+
+   //Route for Get One Maintenance from database by id
+   router.get('/:id', async(request, response) => {
+    try {
+      const { id } = request.params;
+  
+      const maintenance = await Maintenance.findById(id);
+  
+      return response.status(200).json(maintenance);
+    } catch (error) {
+      console.log(error.message);
+      response.status(500).send({message: error.message});
+    }
+  });
+
+
+   // Route for update a Maintenance
+   router.put('/:id', async (request, response) => {
+    try {
+      if(
+        !request.body.MaintenanceID||
+        !request.body.Date ||
+        !request.body.MachineID ||
+        !request.body.MachineName ||
+        !request.body.Category ||
+        !request.body.Machineparts ||
+        !request.body.ChangedMotor ||
+        !request.body.ChangedNeedle||
+        !request.body.Oiled
+      ) {
+        return response.status(400).send({
+          message: 'Send all required fields:',
+        });
+      }
+  
+      const { id } = request.params;
+  
+      const result = await Maintenance.findByIdAndUpdate(id, request.body);
+  
+      if(!result) {
+        return response.status(404).json({ message: 'Miantenance nor found'});
+      }
+  
+      return response.status(200).send({ message: 'Maintenance updated successfully'});
+  
+      
+    } catch (error) {
+      console.log(error.message);
+      response.status(500).send({ message: error.message});
+    }
+  });
+  
+  
+  //Route for delete a Maintenance
+  router.delete('/:id', async (request, response) => {
+    try {
+      const { id } = request.params;
+  
+      const result = await Maintenance.findByIdAndDelete(id);
+  
+      if(!result){
+        return response.status(404).json({ message: 'Maintenance not found'});
+      }
+  
+      return response.status(200).send({ message: 'Maintenance deleted successfully'});
+      
+    } catch (error) {
+      console.log(error.message);
+      response.status(500).send({ message: error.message});
+    }
+  });
+
 
 
 export default router;
