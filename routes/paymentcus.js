@@ -30,8 +30,8 @@ router.post('/', async (request, response) => {
             !request.body.phoneNumber ||
             !request.body.emailAddress ||
             !request.body.bankName ||
-            !request.body.branchName ||
-            !request.body.slip
+            !request.body.branchName 
+            // !request.body.slip
         ){
             return response.status(404).send({
                 message: "send all required fields of the table",
@@ -44,7 +44,7 @@ router.post('/', async (request, response) => {
             emailAddress: request.body.emailAddress,
             bankName: request.body.bankName,
             branchName: request.body.branchName,
-            slip: request.body.slip,
+            // slip: request.body.slip,
         };
         const payment = await Payment.create(newPaymentcus);
         return response.status(201).send(payment);

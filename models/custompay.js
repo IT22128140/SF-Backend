@@ -31,7 +31,7 @@ const paymentSchema =  mongoose.Schema(
     },
     slip:{
         type: String,
-        required:true,
+        required:false,
     },
     
     },
