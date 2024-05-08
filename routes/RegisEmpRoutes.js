@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { FirstName, LastName, emailAddress, phoneNumber, password, employeeType } = req.body;
+    const { FirstName, LastName, emailAddress, phoneNumber, password, employeeType} = req.body;
 
     // Create a new user using the RegisEmp model
     const newUser = new RegisEmp({
