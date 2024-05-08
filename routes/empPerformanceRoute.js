@@ -1,13 +1,31 @@
 import express from 'express';
 import {empPerformance} from '../models/empPerformanceModel.js';
+import { Employee } from '../models/employeeModel.js';
 
 const router = express.Router();
+
+//Route for fetch a employee with line worker occupation
+router.get('/lineworkers',async(request,response) => {
+  try{
+    const lineworkers = await Employee.find({occupation: "LineWorker"});
+
+    return response.status(200).json({
+      count: lineworkers.length,
+      data: lineworkers
+    });
+
+  }catch(error){
+    console.log(error.message);
+    response.status(500).send({message: error.message});
+  }
+});
 
 //Route for save a new empPerformance
 router.post('/', async (request,response) => {
     try{
       if(   //validations to confirm all the required fields are filled
         !request.body.EmployeeID ||
+        !request.body.EmployeeName ||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
         !request.body.StandardMinuteValue||
@@ -20,6 +38,7 @@ router.post('/', async (request,response) => {
       }
       const newempPerformance = {
         EmployeeID : request.body.EmployeeID,
+        EmployeeName : request.body.EmployeeName,
         LineNumber : request.body.LineNumber,
         PositionNumber : request.body.PositionNumber,
         StandardMinuteValue : request.body.StandardMinuteValue,
@@ -73,6 +92,7 @@ router.put('/:id', async (request, response) =>{
     try{
       if(
         !request.body.EmployeeID ||
+        !request.body.EmployeeName ||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
         !request.body.StandardMinuteValue||
@@ -116,5 +136,5 @@ router.delete('/:id', async (request,response) => {
       response.status(500).send({ message: error.message })
     }
   });
-  
+
 export default router;

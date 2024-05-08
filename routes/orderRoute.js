@@ -3,14 +3,38 @@ import { Order } from "../models/orderModel.js";
 
 const router = express.Router();
 
+//get all ongoing orders
+router.get("/ongoing", async (request, response) => {
+  try {
+    const orders = await Order.find({ status: { $ne: "Delivered" } });
+
+    return response.status(200).json(orders);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+//get all completed orders
+router.get("/completed", async (request, response) => {
+  try {
+    const orders = await Order.find({ status: "Delivered" });
+
+    return response.status(200).json(orders);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
 //Add order
 router.post("/", async (request, response) => {
   try {
-
     if (
       !request.body.userId ||
       !request.body.products ||
       !request.body.deliveryDetails ||
+      !request.body.total ||
       !request.body.paymentId
     ) {
       return response.status(400).send({ message: "All fields are required" });
@@ -19,6 +43,7 @@ router.post("/", async (request, response) => {
       userId: request.body.userId,
       products: request.body.products,
       deliveryDetails: request.body.deliveryDetails,
+      total: request.body.total,
       paymentId: request.body.paymentId,
     };
 
@@ -32,10 +57,10 @@ router.post("/", async (request, response) => {
 });
 
 //get order
-router.get("/:id", async (request, response) => {
+router.get("/:userId", async (request, response) => {
   try {
-    const { id } = request.params;
-    const order = await Order.find({ userId: id });
+    const { userId } = request.params;
+    const order = await Order.find({ userId: userId });
 
     return response.status(200).json(order);
   } catch (error) {
@@ -44,32 +69,20 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-//get all orders
-router.get("/", async (request, response) => {
+//update order
+router.put("/:userId", async (request, response) => {
   try {
-    const orders = await Order.find({});
+    const { userId } = request.params;
+    const result = await Order.findByIdAndUpdate(userId, request.body);
 
-    return response.status(200).json(orders);
+    if (!result) {
+      return response.status(404).json({ message: "Order not found" });
+    }
+    return response.status(200).json({ message: "Order updated successfully" });
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
   }
-});
-
-//update order
-router.put("/", async (request, response) => {
-  try {
-    const { id } = request.body.orderId;
-    const result = await Order.findByIdAndUpdate( id, request.body);
-
-    if(!result) {
-      return response.status(404).json({ message: "Order not found" });
-    }
-    return response.status(200).json({ message: "Order updated successfully" });
-    } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
-    }
 });
 
 export default router;
