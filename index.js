@@ -37,7 +37,7 @@ import mprShortagesRoute from './routes/mprShortagesRoute.js';
 
 
 //Ridmi
-
+import garmentProductRoute from "./routes/garmentProductRoute.js";
 
 
 
@@ -138,7 +138,7 @@ app.use('/mpshortages', mprShortagesRoute);
 
 
 //Ridmi
-
+app.use('/garmentProduct',garmentProductRoute);
 
 
 
