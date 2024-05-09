@@ -18,20 +18,20 @@ router.get("/trending", async (request, response) => {
 router.post("/", async (request, response) => {
   try {
     if (
+      !request.body.productId ||
       !request.body.name ||
       !request.body.price ||
       !request.body.category ||
       !request.body.description ||
       !request.body.image ||
-      !request.body.colors ||
-      !request.body.sizes ||
-      !request.body.trending
+      !request.body.sizes
     ) {
       return response.status(400).send({
         message: "All fields are required",
       });
     }
     const newItem = {
+      productId: request.body.productId,
       name: request.body.name,
       description: request.body.description,
       price: request.body.price,
