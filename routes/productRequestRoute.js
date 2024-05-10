@@ -8,8 +8,10 @@ const router = express.Router();
     try{
       if(
         !request.body.productCode||
-        !request.body.quantity||
-        !request.body.requestedDate
+        !request.body.fabricType||
+        !request.body.color||
+        !request.body.stitchingType||
+        !request.body.quantity
       ) {
         return response.status(400).send({
           message: 'send all required field',
@@ -17,8 +19,10 @@ const router = express.Router();
       }
       const newProductRequest = {
         productCode:request.body.productCode,
+        fabricType:request.body.fabricType,
+        color:request.body.color,
+        stitchingType:request.body.stitchingType,
         quantity: request.body.quantity,
-        requestedDate: request.body.requestedDate,
       };
   
       const productRequest = await ProductRequest.create(newProductRequest);
@@ -61,30 +65,30 @@ const router = express.Router();
       }
     });
   
-  //Route for view productRequest by id
-  router.get('/:id', async (request, response) =>{
-    try{
-  
-      const { id } = request.params;
-      const productRequest = await ProductRequest.findById(id);
-  
-      return response.status(200).json({
-        count: productRequest.length,
-        data: productRequest
-      });
-    }catch(error){
-      console.log(error.message);
-      response.status(500).send({message: error.message});
-    }
-  });
+  //Route for get one productRequest from database by id
+  router.get('/:id',async(request,response) => {
+  try{
+    const { id } = request.params;
+
+    const productRequest = await ProductRequest.findById(id);
+
+    return response.status(200).json(productRequest);
+
+  }catch(error){
+    console.log(error.message);
+    response.status(500).send({message: error.message});
+  }
+});
   
   //Route for update productRequest by id
   router.put('/:id', async (request, response) =>{
     try{
       if(
         !request.body.productCode||
-        !request.body.quantity||
-        !request.body.requestedDate
+        !request.body.fabricType||
+        !request.body.color||
+        !request.body.stitchingType||
+        !request.body.quantity
       ) {
         return response.status(400).send({
           message: 'send all required field',
@@ -124,6 +128,7 @@ const router = express.Router();
       response.status(500).send({message: error.message});
     }
   });
+
 
   //Route for Accept Final Product by id
   router.put('/:id/updateAcceptStatus', async (request, response) =>{
