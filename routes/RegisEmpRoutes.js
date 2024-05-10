@@ -1,11 +1,15 @@
 import express from 'express';
 import { RegisEmp } from '../models/RegisEmpModel.js';
+import bcrypt from 'bcrypt';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
     const { FirstName, LastName, emailAddress, phoneNumber, password, employeeType} = req.body;
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user using the RegisEmp model
     const newUser = new RegisEmp({
@@ -14,7 +18,7 @@ router.post('/', async (req, res) => {
       emailAddress,
       phoneNumber,
       employeeType,
-      password
+      password: hashedPassword
     });
 
     // Save the user to the database

@@ -5,14 +5,16 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { name, email, feedback, rating, image } = req.body;
+    const { name, email,phoneNumber, feedback, rating } = req.body;
+
     const newFeedback = new Feedback({
       name,
       email,
+      phoneNumber,
       feedback,
-      rating,
-      image
+      rating
     });
+
     await newFeedback.save();
     res.status(201).json({ message: 'Feedback submitted successfully' });
   } catch (error) {

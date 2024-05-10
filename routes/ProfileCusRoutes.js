@@ -1,5 +1,5 @@
 import express from 'express';
-import { RegisEmp } from '../models/RegisEmpModel.js';
+import { RegisCus } from '../models/RegisCusModel.js';
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   try {
     const userId = req.userId;
     
-    const user = await RegisEmp.findById(userId);
+    const user = await RegisCus.findById(userId);
     
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
