@@ -3,23 +3,12 @@ import { RegisCus } from '../models/RegisCusModel.js';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const userId = req.userId;
     
-    const user = await RegisCus.findById(userId);
-    
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    
-    const profileInfo = {
-      FirstName: user.FirstName,
-      LastName: user.LastName,
-      emailAddress: user.emailAddress,
-      phoneNumber: user.phoneNumber,
-      password: '*********'
-    };
+    const id = req.params.id;
+
+    const profileInfo = await RegisCus.findById(id);
 
     res.status(200).json(profileInfo);
   } catch (error) {
