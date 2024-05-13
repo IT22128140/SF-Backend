@@ -3,11 +3,12 @@ import { Order } from "../models/orderModel.js";
 
 const router = express.Router();
 
-//get all ongoing orders
+// Get all ongoing orders
 router.get("/ongoing", async (request, response) => {
   try {
-    const orders = await Order.find({ status: { $ne: "Delivered" } });
-
+    const orders = await Order.find({
+      status: { $nin: ["Delivered", "Canceled"] },
+    });
     return response.status(200).json(orders);
   } catch (error) {
     console.log(error.message);
@@ -15,11 +16,12 @@ router.get("/ongoing", async (request, response) => {
   }
 });
 
-//get all completed orders
+// Get all completed orders
 router.get("/completed", async (request, response) => {
   try {
-    const orders = await Order.find({ status: "Delivered" });
-
+    const orders = await Order.find({
+      $or: [{ status: "Delivered" }, { status: "Canceled" }],
+    });
     return response.status(200).json(orders);
   } catch (error) {
     console.log(error.message);
