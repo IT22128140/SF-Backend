@@ -8,7 +8,6 @@ router.post('/', async (request,response) => {
     try{
       if(   //validations to confirm all the required fields are filled
         !request.body.DistributeID ||
-        !request.body.Date||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
         !request.body.Distributed||
@@ -20,7 +19,6 @@ router.post('/', async (request,response) => {
       }
       const newrmDistribute = {
         DistributeID : request.body.DistributeID,
-        Date : request.body.Date,
         LineNumber : request.body.LineNumber,
         PositionNumber : request.body.PositionNumber,
         Distributed : request.body.Distributed,
@@ -73,7 +71,6 @@ router.put('/:id', async (request, response) =>{
     try{
       if(
         !request.body.DistributeID ||
-        !request.body.Date||
         !request.body.LineNumber ||
         !request.body.PositionNumber ||
         !request.body.Distributed||
