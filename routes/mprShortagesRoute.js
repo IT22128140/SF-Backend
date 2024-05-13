@@ -43,7 +43,6 @@ router.post('/', async(request, response) => {
     try {
       if(
         !request.body.RequestID ||
-        !request.body.Requested||
         !request.body.PartName ||
         !request.body.Description ||
         !request.body.Quantity ||
@@ -57,7 +56,6 @@ router.post('/', async(request, response) => {
       }
       const newShortage = {
         RequestID: request.body.RequestID,
-        Requested: request.body.Requested,
         PartName: request.body.PartName,
         Description: request.body.Description,
         Quantity: request.body.Quantity,
@@ -111,7 +109,6 @@ router.post('/', async(request, response) => {
     try {
       if(
         !request.body.RequestID ||
-        !request.body.Requested||
         !request.body.PartName ||
         !request.body.Description ||
         !request.body.Quantity ||
