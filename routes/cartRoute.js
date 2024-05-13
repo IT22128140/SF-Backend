@@ -89,7 +89,7 @@ router.put("/plus/:userId/:id", async (request, response) => {
       return;
     }
 
-    // Save the updated cart back to the database (assuming you have a save method)
+    // Save the updated cart back to the database
     await cart.save();
 
     // Send a success response
