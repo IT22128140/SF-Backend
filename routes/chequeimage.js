@@ -1,60 +1,57 @@
 import express from 'express';
 import { Salary } from '../models/salary.js';
-import multer from 'multer';
-import path from 'path';
+
 
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-    destination: (req,file,cb) => {
-        cb(null,'public/Images')
-    },
-    filename: (req,file,cb) => {
-        cb(null,file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+router.put('/:id', async (request, response) => {
+  try {
+    if(
+      !request.body.time ||
+      !request.body.notice ||
+      !request.body.cheque1 ||
+      !request.body.cheque2 ||
+      !request.body.profile
+    ) {
+      return response.status(500).send({
+        message: "send all required fields of the table",});
     }
-})
+    const newSalary ={
+      time: request.body.time,
+      notice: request.body.notice,
+      cheque1: request.body.cheque1,
+      cheque2: request.body.cheque2,
+      profile: request.body.profile,
+    };
+    const salary = await Salary.create(newSalary);
+    return response.status(201).send(salary);
+  }
+  catch (error) {
+    console.log(error.message);
+    response.status(500).send({message: error.message});
+  }
+});
 
-const upload = multer({
-    storage: storage
-})
+router.get('/:id', async (request, response) => {
+  try {
 
+    const { id } = request.params;
 
-
-
-
-router.put('/:id',upload.single('file'), async (request, response) => {
-  
-
-    try {
-      if(
-        
-        
-        !request.body.cheques 
-        
-      ) {
-        return response.status(404).send({
-          message: "send all required fields of the table",
-        });
-      }
-      const { id } = request.params;
-      
-      const data = {
-        
-        cheques: request.body.cheques
-      }
-
-      const result = await Salary.findByIdAndUpdate(id,data);
-      if(!result) {
-        return response.status(404).send({message: "salary not found"});
-      }
-      return response.status(200).send({message: "salary updated successfully"});
-    
-    } catch (error) {
+    const salaryone = await Salary.findById(id);
+    return response.status(200).json(salaryone);
+  } catch (error) {
     console.log(error.message);
     response.status(500).send({message: error.message});
   }
   });
+
+
+
+
+
+
+
 
 
   export default router;

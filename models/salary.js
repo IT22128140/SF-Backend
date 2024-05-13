@@ -11,10 +11,10 @@ const salarySchema =  mongoose.Schema(
         required: true,
       },
   
-    // time: {
-    //     type: String,
-    //     required: true,
-    // },
+    date: {
+        type: String,
+        required: true,
+    },
     firstName: {
         type: String,
         required: true,
@@ -47,22 +47,22 @@ const salarySchema =  mongoose.Schema(
         type: Number,
         required: true,
     },
-    // notice: {
-    //     type: String,
-    //     required: false,
-    // },
-    // cheque1: {
-    //     type: String,
-    //     required: false,
-    // },
-    // cheque2: {
-    //     type: String,
-    //     required: false,
-    // },
-    // profile: {
-    //     type: String,
-    //     required: false,
-    // },
+    notice: {
+        type: String,
+        required: true,
+    },
+    cheque1: {
+        type: String,
+        required: false,
+    },
+    cheque2: {
+        type: String,
+        required: false,
+    },
+    profile: {
+        type: String,
+        required: false,
+    },
     },
     {
         timestamps: true,
