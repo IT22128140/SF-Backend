@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const supplierDetails = mongoose.Schema(
      {
-        SRequestID: {
+        SrequestID: {
             type: String,
             required: true,
         },  
