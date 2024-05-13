@@ -41,7 +41,7 @@ import MaintenanceRoute from './routes/MaintenanceRoute.js';
 import rmRequestRoute from './routes/rmRequestRoute.js';
 import rmDistributeRoute from './routes/rmDistributeRoute.js';
 import empPerformanceRoute from './routes/empPerformanceRoute.js';
-
+import garmentProductRoute from './routes/garmentProductRoute.js';
 
 
 
@@ -77,6 +77,7 @@ import chequeimage from "./routes/chequeimage.js";
 
 
 
+
 //Sandithi
 import employeeRoute from "./routes/employeeRoute.js";
 import attendanceRoute from "./routes/attendanceRoute.js";
@@ -102,6 +103,8 @@ import orderRoute from "./routes/orderRoute.js";
 
 //connection
 const app = express();
+app.use(express.json({limit: '10mb'}));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, res) => {
@@ -147,7 +150,7 @@ app.use('/maintenance', MaintenanceRoute);
 app.use('/rmRequests', rmRequestRoute);
 app.use('/rmDistributes', rmDistributeRoute);
 app.use('/empPerformances', empPerformanceRoute);
-
+app.use('/garmentProduct',garmentProductRoute);
 
 
 
@@ -177,6 +180,7 @@ app.use('/salary', salaryRouter);
 app.use('/payment', paymentRouter);
 app.use('/editsalary', editsalary);
 app.use('/uploads',chequeimage);
+
 
 
 
