@@ -11,12 +11,7 @@ const repairsSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-    
-        RequestedDate: {
-            type: Date,
-            required: true,
-        },
-    
+        
         RequestedTime: {
             type: String,
             required: true,

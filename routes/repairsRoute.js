@@ -28,7 +28,7 @@ router.get('/rworkers', async (request, response) => {
       const { startDate, endDate } = req.query;
 
       const repairs = await Repair.find({
-        RequestedDate: {
+        createdAt: {
           $gte: new Date(startDate),
           $lte: new Date(endDate),
         },
@@ -49,7 +49,6 @@ router.post('/', async(request, response) => {
       if(
         !request.body.RepairID ||
         !request.body.RepairDescription ||
-        !request.body.RequestedDate ||
         !request.body.RequestedTime ||
         !request.body.UrgencyLevel ||
         !request.body.Status ||
@@ -79,7 +78,6 @@ router.post('/', async(request, response) => {
       const newRepair = {
         RepairID: request.body.RepairID,
         RepairDescription: request.body.RepairDescription,
-        RequestedDate: request.body.RequestedDate,
         RequestedTime: request.body.RequestedTime,
         UrgencyLevel: request.body.UrgencyLevel,
         Status: request.body.Status,
@@ -136,7 +134,6 @@ router.post('/', async(request, response) => {
       if(
         !request.body.RepairID ||
         !request.body.RepairDescription ||
-        !request.body.RequestedDate ||
         !request.body.RequestedTime ||
         !request.body.UrgencyLevel ||
         !request.body.Status ||
