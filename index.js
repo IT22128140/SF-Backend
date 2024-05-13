@@ -16,7 +16,16 @@ import releaseProductRoute from "./routes/releaseProductRoute.js";//sageevanRout
 
 
 //Varagan
-import FeedbackFormRoute from "./routes/FeedbackFormRoute.js";
+import FeedbackFormRoutes from "./routes/FeedbackFormRoutes.js";
+import FeedbackManageRoutes from "./routes/FeedbackManageRoutes.js";
+import LoginCusRoutes from "./routes/LoginCusRoutes.js";
+import LoginEmpRoutes from "./routes/LoginEmpRoutes.js";
+import RegisCusRoutes from "./routes/RegisCusRoutes.js";
+import RegisEmpRoutes from "./routes/RegisEmpRoutes.js";
+import ProfileCusRoutes from "./routes/ProfileCusRoutes.js";
+import ProfileEmpRoutes from "./routes/ProfileEmpRoutes.js";
+import EditProfileCusRoutes from "./routes/EditProfileCusRoutes.js";
+import EditProfileEmpRoutes from "./routes/EditProfileEmpRoutes.js";
 
 
 
@@ -77,6 +86,7 @@ import chequeimage from "./routes/chequeimage.js";
 
 
 
+
 //Sandithi
 import employeeRoute from "./routes/employeeRoute.js";
 import attendanceRoute from "./routes/attendanceRoute.js";
@@ -102,6 +112,8 @@ import orderRoute from "./routes/orderRoute.js";
 
 //connection
 const app = express();
+app.use(express.json({limit: '10mb'}));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, res) => {
@@ -111,8 +123,16 @@ app.get("/", (req, res) => {
 
 //enter your routes under your name. don't add or delete empty spaces
 //Varagan
-app.use("/Feedback", FeedbackFormRoute);
-
+app.use("/feedback", FeedbackFormRoutes);
+app.use("/feedbacks", FeedbackManageRoutes);
+app.use("/LoginCus", LoginCusRoutes);
+app.use("/RegisCus", RegisCusRoutes);
+app.use("/ProfileCus", ProfileCusRoutes);
+app.use("/EditProfileCus", EditProfileCusRoutes);
+app.use("/LoginEmp", LoginEmpRoutes);
+app.use("/RegisEmp", RegisEmpRoutes);
+app.use("/ProfileEmp", ProfileEmpRoutes);
+app.use("/EditProfileEmp", EditProfileEmpRoutes);
 
 
 
@@ -177,6 +197,7 @@ app.use('/salary', salaryRouter);
 app.use('/payment', paymentRouter);
 app.use('/editsalary', editsalary);
 app.use('/uploads',chequeimage);
+
 
 
 

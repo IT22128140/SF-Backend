@@ -20,18 +20,18 @@ const upload = multer({
 
 
 
-//route for save a new payment
+//route for save a new payments
 
 router.post('/', async (request, response) => {
     try {
         if (
             !request.body.fullName ||
-            !request.body.totalpayment ||
+            // !request.body.totalpayment ||
             !request.body.phoneNumber ||
             !request.body.emailAddress ||
             !request.body.bankName ||
-            !request.body.branchName 
-            // !request.body.slip
+            !request.body.branchName ||
+            !request.body.slip
         ){
             return response.status(404).send({
                 message: "send all required fields of the table",
@@ -39,12 +39,12 @@ router.post('/', async (request, response) => {
         }
         const newPaymentcus = {
             fullName: request.body.fullName,
-            totalpayment: request.body.totalpayment,
+            // totalpayment: request.body.totalpayment,
             phoneNumber: request.body.phoneNumber,
             emailAddress: request.body.emailAddress,
             bankName: request.body.bankName,
             branchName: request.body.branchName,
-            // slip: request.body.slip,
+            slip: request.body.slip,
         };
         const payment = await Payment.create(newPaymentcus);
         return response.status(201).send(payment);

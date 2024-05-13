@@ -6,10 +6,10 @@ const router = express.Router();
 // Route to retrieve repair details within a date range
 router.get('/range', async (req, res) => {
   try {
-    // Parse start and end dates from request query parameters
+
     const { startDate, endDate } = req.query;
 
-    // Query the database for repair records within the specified date range
+
     const machines = await Machine.find({
       PurchasedDate: {
         $gte: new Date(startDate),
@@ -17,7 +17,7 @@ router.get('/range', async (req, res) => {
       },
     });
 
-    // Return the retrieved repair details as a response
+
     res.status(200).json(machines);
   } catch (error) {
     console.error('Error retrieving repair details:', error);
