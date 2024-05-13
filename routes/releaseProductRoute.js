@@ -7,19 +7,25 @@ const router = express.Router();
 router.post('/', async (request, response) =>{
     try{
       if(
-        !request.body.release_ID||
         !request.body.productCode||
-        !request.body.releaseDate
+        !request.body.fabricType||
+        !request.body.color||
+        !request.body.stitchingType||
+        !request.body.quantity
       ) {
         return response.status(400).send({
           message: 'send all required field',
         });
       }
-      const newReleaseProduct = {
-        release_ID:request.body.release_ID,      
+      const newReleaseProduct = {     
         productCode:request.body.productCode,
-        //customerID: request.body.customerID,
-        releaseDate: request.body.releaseDate,
+        customerID:request.body.customerID, 
+        fabricType:request.body.fabricType,
+        color:request.body.color,
+        stitchingType:request.body.stitchingType,
+        quantity: request.body.quantity,
+        defects: request.body.defects,
+        unitPrice: request.body.unitPrice,
       };
   
       const releaseProduct = await ReleaseProduct.create(newReleaseProduct);
@@ -68,9 +74,8 @@ router.post('/', async (request, response) =>{
   router.put('/:id', async (request, response) =>{
     try{
       if(
-        !request.body.release_ID||
         !request.body.productCode||
-        !request.body.releaseDate
+        !request.body.quantity
       ) {
         return response.status(400).send({
           message: 'send all required field',
