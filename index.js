@@ -41,7 +41,7 @@ import MaintenanceRoute from './routes/MaintenanceRoute.js';
 import rmRequestRoute from './routes/rmRequestRoute.js';
 import rmDistributeRoute from './routes/rmDistributeRoute.js';
 import empPerformanceRoute from './routes/empPerformanceRoute.js';
-
+import garmentProductRoute from './routes/garmentProductRoute.js';
 
 
 
@@ -146,7 +146,7 @@ app.use('/maintenance', MaintenanceRoute);
 app.use('/rmRequests', rmRequestRoute);
 app.use('/rmDistributes', rmDistributeRoute);
 app.use('/empPerformances', empPerformanceRoute);
-
+app.use('/garmentProduct',garmentProductRoute);
 
 
 
