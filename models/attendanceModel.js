@@ -1,40 +1,26 @@
 import mongoose from "mongoose";
-import { boolean } from "webidl-conversions";
 
 const attendanceSchema = mongoose.Schema(
     {
-        employeeId: {
+        empId: {
             type: String,
             required: true
         },
-        status: {
+        generatedEmpId: {
             type: String,
-            required: true,
-            defualt: "Absent"
+            required: true
         },
-        date: {
+        departure: {
             type: Date,
-            required: true
-        },
-        arrivalTime: {
-            type: String,
-            required: true
-        },
-        departureTime: {
-            type: String,
             required: false
         },
-        overTimeHours: {
-            type: Number,
-            required: false
-        },
-        late: {
-            type: Boolean,
-            required: true
-        }
+        // late: {
+        //     type: Boolean,
+        //     required: true
+        // }
     },
-    {   
-        timestamps: true
+    {
+        timestamps: true,
     }
 );
 
