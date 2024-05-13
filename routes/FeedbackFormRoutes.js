@@ -1,13 +1,18 @@
 import express from "express";
 import { Feedback } from "../models/Feedback.js";
+import crypto from 'crypto';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { name, email,phoneNumber, feedback, rating } = req.body;
+    const { name, email, phoneNumber, feedback, rating } = req.body;
+
+    // Generate a unique ID
+    const id = crypto.randomUUID();
 
     const newFeedback = new Feedback({
+      id,
       name,
       email,
       phoneNumber,
@@ -22,5 +27,4 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Failed to submit feedback' });
   }
 });
-
 export default router;
