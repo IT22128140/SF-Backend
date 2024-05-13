@@ -38,6 +38,22 @@ const router = express.Router();
   //Route for view all productRequest
   router.get('/', async (request, response) =>{
     try{
+      const productRequests = await ProductRequest.find({});
+  
+      return response.status(200).json({
+        count: productRequests.length,
+        data: productRequests
+      });
+    }catch(error){
+      console.log(error.message);
+      response.status(500).send({message: error.message});
+    }
+  });
+
+
+  //Route for view all productRequest
+  router.get('/requestReview', async (request, response) =>{
+    try{
       const productRequests = await ProductRequest.find({acceptStatus: 'pending'});
   
       return response.status(200).json({
@@ -49,6 +65,7 @@ const router = express.Router();
       response.status(500).send({message: error.message});
     }
   });
+
 
     //Route for view pending Review 
     router.get('/pendingReview', async (request, response) =>{
