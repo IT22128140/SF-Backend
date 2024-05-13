@@ -48,6 +48,7 @@ import garmentProductRoute from './routes/garmentProductRoute.js';
 
 
 
+
 //Isuru
 import SupplierDetailsroutes from "./routes/SupplierDetailsroutes.js";
 import RMStockRoutes from "./routes/RMStockRoutes.js";
@@ -147,6 +148,8 @@ app.use('/rmRequests', rmRequestRoute);
 app.use('/rmDistributes', rmDistributeRoute);
 app.use('/empPerformances', empPerformanceRoute);
 app.use('/garmentProduct',garmentProductRoute);
+
+
 
 
 
