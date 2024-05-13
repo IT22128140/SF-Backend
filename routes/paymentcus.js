@@ -20,7 +20,7 @@ const upload = multer({
 
 
 
-//route for save a new payment
+//route for save a new payments
 
 router.post('/', async (request, response) => {
     try {
