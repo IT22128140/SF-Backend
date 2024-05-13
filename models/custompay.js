@@ -9,7 +9,7 @@ const paymentSchema =  mongoose.Schema(
 
      totalpayment: {
         type: Number,
-        required: true,
+        required: false,
     },
   
     phoneNumber:{
@@ -31,7 +31,7 @@ const paymentSchema =  mongoose.Schema(
     },
     slip:{
         type: String,
-        required:false,
+        required:true,
     },
     
     },
