@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 const maintenanceSchema = mongoose.Schema(
 
     {
+        MaintenanceID: {
+            type: String,
+            required: true,
+        },
+
         Date: {
             type: Date,
             required: true,
@@ -41,10 +46,7 @@ const maintenanceSchema = mongoose.Schema(
                 },
 
                 
-                quantity:{
-                    type: Number,
-                    required: true,
-                },
+                
             }
         ],
 
@@ -65,6 +67,10 @@ const maintenanceSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+    
+    },
+     {
+        timestamps: true,
     }
 
 )

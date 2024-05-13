@@ -89,7 +89,7 @@ router.put("/plus/:userId/:id", async (request, response) => {
       return;
     }
 
-    // Save the updated cart back to the database (assuming you have a save method)
+    // Save the updated cart back to the database
     await cart.save();
 
     // Send a success response
@@ -104,9 +104,9 @@ router.put("/plus/:userId/:id", async (request, response) => {
 router.post("/:userId", async (request, response) => {
   try {
     const { userId } = request.params;
-    const { productId, quantity, color, size, name, price, image } = request.body;
+    const { _id, productId, quantity, color, size, name, price, image } = request.body;
     let cart = await Cart.findOne({ userId: userId});
-    let item = await Item.findOne({ _id: productId });
+    let item = await Item.findOne({ _id: _id });
 
     if (!item) {
       return response.status(400).send({
@@ -123,7 +123,7 @@ router.post("/:userId", async (request, response) => {
       //product exists in the cart, update the quantity
       if (itemIndex > -1) {
         let productItem = cart.items[itemIndex];
-        productItem.quantity = productItem.quantity + quantity;
+        productItem.quantity = Number(productItem.quantity) + Number(quantity);
         cart.items[itemIndex] = productItem;
       } else {
         cart.items.push({ productId, quantity, color, size, price, name, image });
