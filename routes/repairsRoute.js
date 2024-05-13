@@ -7,7 +7,7 @@ const router = express.Router();
 //Route for get RepairWorkers
 router.get('/rworkers', async (request, response) => {
   try {
-    // Fetching only required fields using select()
+
     const repairWorkers = await Employee.find({occupation: "RepairWorker" })
                                         .select('employeeID firstName lastName occupation contactNo email');
 
@@ -24,18 +24,17 @@ router.get('/rworkers', async (request, response) => {
   // Route to retrieve repair details within a date range
   router.get('/range', async (req, res) => {
     try {
-      // Parse start and end dates from request query parameters
+     
       const { startDate, endDate } = req.query;
-  
-      // Query the database for repair records within the specified date range
+
       const repairs = await Repair.find({
-        RequestedDate: {
+        createdAt: {
           $gte: new Date(startDate),
           $lte: new Date(endDate),
         },
       });
   
-      // Return the retrieved repair details as a response
+      // Return the data
       res.status(200).json(repairs);
     } catch (error) {
       console.error('Error retrieving repair details:', error);
@@ -50,7 +49,6 @@ router.post('/', async(request, response) => {
       if(
         !request.body.RepairID ||
         !request.body.RepairDescription ||
-        !request.body.RequestedDate ||
         !request.body.RequestedTime ||
         !request.body.UrgencyLevel ||
         !request.body.Status ||
@@ -62,14 +60,13 @@ router.post('/', async(request, response) => {
         });
       }
 
-      // Ensure that Workers is an array
     if (!Array.isArray(request.body.Workers)) {
       return response.status(400).send({
         message: 'Workers must be an array of objects',
       });
     }
 
-    // Validate each worker object in the array
+    // Validate repair workers
     for (const worker of request.body.Workers) {
       if (!worker.employeeID || !worker.firstName || !worker.lastName) {
         return response.status(400).send({
@@ -81,7 +78,6 @@ router.post('/', async(request, response) => {
       const newRepair = {
         RepairID: request.body.RepairID,
         RepairDescription: request.body.RepairDescription,
-        RequestedDate: request.body.RequestedDate,
         RequestedTime: request.body.RequestedTime,
         UrgencyLevel: request.body.UrgencyLevel,
         Status: request.body.Status,
@@ -138,7 +134,6 @@ router.post('/', async(request, response) => {
       if(
         !request.body.RepairID ||
         !request.body.RepairDescription ||
-        !request.body.RequestedDate ||
         !request.body.RequestedTime ||
         !request.body.UrgencyLevel ||
         !request.body.Status ||
