@@ -11,6 +11,10 @@ router.get('/:id', async (req, res) => {
 
     const profileInfo = await RegisCus.findById(id);
 
+    if (!profileInfo) {
+      return res.status(404).json({ message: 'Profile not found' });
+    }
+
     res.status(200).json(profileInfo);
   } catch (error) {
     console.error(error);
@@ -19,13 +23,12 @@ router.get('/:id', async (req, res) => {
 });
 
 // Route to save profile information
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const { FirstName, LastName, emailAddress, phoneNumber, password } = req.body;
-    const userId = req.userId;
+    const id = req.params.id;
 
-    // Find the user by their ID
-    const user = await RegisCus.findById(userId);
+    const user = await RegisCus.findById(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -43,29 +46,29 @@ router.put('/', async (req, res) => {
     res.status(200).json(savedProfile);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' }); // Handle any errors
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
 // Route to delete the profile
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const userId = req.userId; 
+    const id = req.params.id;
 
     // Find the user by their ID
-    const user = await RegisCus.findById(userId);
+    const user = await RegisCus.findById(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Delete the user's profile
-    await user.deleteOne();
+    await RegisCus.findByIdAndDelete(id);
 
     res.json({ message: 'Profile deleted successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' }); // Handle any errors
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
