@@ -19,9 +19,9 @@ router.post('/', async (request, response) => {
         !request.body.overtime ||
         !request.body.bonus ||
         !request.body.totalAmount||
-        !request.body.notice 
-        // !request.body.cheque1 
-        // !request.body.cheque2 ||
+        !request.body.notice||
+        !request.body.cheque1 
+        // !request.body.cheque2 
         // !request.body.profile
       ) {
         return response.status(500).send({
@@ -40,7 +40,7 @@ router.post('/', async (request, response) => {
         bonus: request.body.bonus,
         totalAmount: request.body.totalAmount,
         notice: request.body.notice,
-        // cheques: request.body.cheque1,
+        cheque1: request.body.cheque1,
         // cheque2: request.body.cheque2,
         // profile: request.body.profile,
       };
@@ -90,7 +90,7 @@ router.post('/', async (request, response) => {
             !request.body.attendance ||
             !request.body.overtime ||
             !request.body.totalAmount ||
-            // !request.body.cheque1||
+            !request.body.cheque1||
             !request.body.date ||
             !request.body.notice ||
             !request.body.bonus
@@ -107,7 +107,7 @@ router.post('/', async (request, response) => {
             attendance: request.body.attendance,
             overtime: request.body.overtime,
             totalAmount: request.body.totalAmount,
-            // cheque1: request.body.cheque1,
+            cheque1: request.body.cheque1,
             date: request.body.date,
             notice: request.body.notice,
 
