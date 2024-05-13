@@ -11,6 +11,10 @@ router.get('/:id', async (req, res) => {
 
     const profileInfo = await RegisEmp.findById(id);
 
+    if (!profileInfo) {
+      return res.status(404).json({ message: 'Profile not found' });
+    }
+
     res.status(200).json(profileInfo);
   } catch (error) {
     console.error(error);
@@ -19,54 +23,53 @@ router.get('/:id', async (req, res) => {
 });
 
 // Route to save profile information
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    const { firstName, lastName, emailAddress, phoneNumber, employeeType, password } = req.body;
-    const userId = req.userId; 
+    const { FirstName, LastName, emailAddress, phoneNumber, password, employeeType } = req.body;
+    const id = req.params.id;
 
-    // Find the user by their ID
-    const user = await RegisEmp.findById(userId);
+    const user = await RegisEmp.findById(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Update the user's profile information
-    user.firstName = firstName || user.firstName;
-    user.lastName = lastName || user.lastName;
+    user.FirstName = FirstName || user.FirstName;
+    user.LastName = LastName || user.LastName;
     user.emailAddress = emailAddress || user.emailAddress;
     user.phoneNumber = phoneNumber || user.phoneNumber;
-    user.employeeType = employeeType || user.employeeType;
     user.password = password || user.password;
+    user.employeeType = employeeType || user.employeeType;
 
     const savedProfile = await user.save();
 
     res.status(200).json(savedProfile);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' }); // Handle any errors
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
 // Route to delete the profile
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const userId = req.userId; 
+    const id = req.params.id;
 
     // Find the user by their ID
-    const user = await RegisEmp.findById(userId);
+    const user = await RegisEmp.findById(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Delete the user's profile
-    await user.deleteOne();
+    await RegisEmp.findByIdAndDelete(id);
 
     res.json({ message: 'Profile deleted successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' }); // Handle any errors
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 

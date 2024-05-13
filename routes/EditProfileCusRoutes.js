@@ -35,9 +35,9 @@ router.put('/:id', async (req, res) => {
     }
 
     // Update the user's profile information
-    user.firstName = FirstName || user.firstName;
-    user.lastName = LastName || user.lastName;
-    user.email = emailAddress || user.email;
+    user.FirstName = FirstName || user.FirstName;
+    user.LastName = LastName || user.LastName;
+    user.emailAddress = emailAddress || user.emailAddress;
     user.phoneNumber = phoneNumber || user.phoneNumber;
     user.password = password || user.password;
 
