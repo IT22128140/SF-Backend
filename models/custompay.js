@@ -9,7 +9,7 @@ const paymentSchema =  mongoose.Schema(
 
      totalpayment: {
         type: Number,
-        required: false,
+        required: true,
     },
   
     phoneNumber:{
