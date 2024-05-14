@@ -9,7 +9,7 @@ router.post('/', async (request, response) => {
     try {
       // Checking if all required fields are provided in the request body
       if (
-        !request.body.SRequestID ||
+        !request.body.SrequestID ||
         !request.body.supplierName ||
         !request.body.address ||
         !request.body.contactNumber ||
@@ -24,7 +24,7 @@ router.post('/', async (request, response) => {
   
       // Creating a new supplier document
       const supdtls = {
-        SRequestID:    request.body.SRequestID,
+        SrequestID:    request.body.SrequestID,
         supplierName:    request.body.supplierName,
         address:         request.body.address,
         contactNumber:   request.body.contactNumber,
@@ -42,6 +42,8 @@ router.post('/', async (request, response) => {
   
   // Route handler to retrieve all suppliers
   router.get('/', async (request, response) => {
+
+   
     try {
       const sups = await Sup.find({});                            // Finding all suppliers in the database
       return response.status(200).send(sups);                     // Sending the retrieved suppliers as a response
@@ -68,6 +70,8 @@ router.post('/', async (request, response) => {
     try {
       // Checking if all required fields are provided in the request body
       if (
+        
+        !request.body.SrequestID ||
         !request.body.supplierName ||
         !request.body.address ||
         !request.body.contactNumber ||
