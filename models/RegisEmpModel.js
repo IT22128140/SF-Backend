@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const RegisEmpModelSchema = mongoose.Schema({
-    firstName: {
+      FirstName: {
         type: String,
         required: true
       },
-      lastName: {
+      LastName: {
         type: String,
         required: true
       },
@@ -19,10 +19,6 @@ const RegisEmpModelSchema = mongoose.Schema({
         required: true
       },
       password: {
-        type: String,
-        required: true
-      },
-      password2: {
         type: String,
         required: true
       },
