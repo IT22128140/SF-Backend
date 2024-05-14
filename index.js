@@ -78,7 +78,7 @@ import salaryRouter from "./routes/salaryemp.js";
 import paymentRouter from "./routes/paymentcus.js";
 import editsalary from "./routes/editsalary.js"
 import chequeimage from "./routes/chequeimage.js";
-
+import deliliveryDetailsPayment from "./routes/deliveryDetailsPayment.js";
 
 
 
@@ -197,7 +197,7 @@ app.use('/salary', salaryRouter);
 app.use('/payment', paymentRouter);
 app.use('/editsalary', editsalary);
 app.use('/uploads',chequeimage);
-
+app.use('/deliveryDetailsPayment',deliliveryDetailsPayment);
 
 
 
