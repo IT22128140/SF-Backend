@@ -40,7 +40,6 @@ router.post('/', async (request,response) => {
     try{
       if(   //validations to confirm all the required fields are filled
         !request.body.RequestID ||
-        !request.body.Date||
         !request.body.FabricType_Colour_Amount ||
         !request.body.ButtonType_Colour_Amount ||
         !request.body.ThreadType_Colour_Amount ||
@@ -53,7 +52,6 @@ router.post('/', async (request,response) => {
       }
       const newrmRequest = {
         RequestID : request.body.RequestID,
-        Date : request.body.Date,
         FabricType_Colour_Amount : request.body.FabricType_Colour_Amount,
         ButtonType_Colour_Amount : request.body.ButtonType_Colour_Amount,
         ThreadType_Colour_Amount : request.body.ThreadType_Colour_Amount,
@@ -107,7 +105,6 @@ router.put('/:id', async (request, response) =>{
     try{
       if(
         !request.body.RequestID ||
-        !request.body.Date||
         !request.body.FabricType_Colour_Amount ||
         !request.body.ButtonType_Colour_Amount ||
         !request.body.ThreadType_Colour_Amount ||

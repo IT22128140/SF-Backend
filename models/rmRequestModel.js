@@ -6,10 +6,6 @@ const rmRequestSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        Date: {
-            type: Date,
-            required: true,
-        },
         FabricType_Colour_Amount: {
             type: String,
             required: true,
