@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema(
         },
         color: {
           type: String,
-          required: true,
+          required: false,
         },
         size: {
           type: String,
@@ -35,6 +35,10 @@ const orderSchema = new mongoose.Schema(
       },
     ],
     deliveryDetails: {
+      userId: {
+        type: String,
+        required: true,
+      },
       firstName: {
         type: String,
         required: true,
@@ -55,16 +59,16 @@ const orderSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-      province: {
-        type: String,
-        required: true,
-      },
       district: {
         type: String,
         required: true,
       },
-      postalCode: {
+      province: {
         type: String,
+        required: true,
+      },
+      postalCode: {
+        type: Number,
         required: true,
       },
     },
