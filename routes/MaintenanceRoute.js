@@ -8,7 +8,6 @@ const router = express.Router();
  //Route for get MachineParts
  router.get('/mparts', async (request, response) => {
   try {
-    // Fetching only required fields using select()
     const mparts = await MP.find({})
                            .select('partID partName condition');
 
@@ -59,41 +58,31 @@ router.get('/sewingmachines', async (request, response) => {
   // Route for sending notifications for maintenance
 router.get('/send-notifications', async (request, response) => {
   try {
-    // Find all unique MachineIDs from maintenance records
     const machineIDs = await Maintenance.distinct("MachineID");
 
     const notifications = [];
 
     for (const machineID of machineIDs) {
-      // Find the last maintenance record where Oiled is true for the current machineID
       const lastOiledMaintenance = await Maintenance.findOne({ MachineID: machineID, Oiled: "yes" }).sort({ Date: -1 });
 
       if (lastOiledMaintenance) {
-        // Calculate the next maintenance date
         const nextMaintenanceDate = new Date(lastOiledMaintenance.Date);
         nextMaintenanceDate.setDate(nextMaintenanceDate.getDate() + 7);
 
-        // If the next maintenance date is today or in the past, create a notification
+        // If the next maintenance date is today
         if (nextMaintenanceDate <= new Date()) {
-          // Format the next maintenance date
           const formattedDate = nextMaintenanceDate.toDateString();
-          
-          // Create a notification message for upcoming maintenance
+       
           const upcomingMessage = `Upcoming maintenance for machine ${machineID} on ${formattedDate}.`;
-
-          // Push the upcoming maintenance notification message to the array
           notifications.push(upcomingMessage);
         }
 
-        // If the next maintenance date is in the future, create a notification
+        // If the next maintenance date is in future
         if (nextMaintenanceDate > new Date()) {
-          // Format the next maintenance date
           const formattedDate = nextMaintenanceDate.toDateString();
           
-          // Create a notification message for upcoming maintenance
-          const upcomingMessage = `Upcoming maintenance for machine ${machineID} on ${formattedDate}.`;
 
-          // Push the upcoming maintenance notification message to the array
+          const upcomingMessage = `Upcoming maintenance for machine ${machineID} on ${formattedDate}.`;
           notifications.push(upcomingMessage);
         }
       }
@@ -136,7 +125,7 @@ router.post('/', async(request, response) => {
       });
     }
 
-    // Validate each machine part object in the array
+    // Validate each machine part in the array
     for (const part of request.body.Machineparts) {
       if (!part.partID || !part.partName || !part.condition ) {
         return response.status(400).send({
