@@ -11,9 +11,9 @@ router.post('/', async (request,response) => {
         !request.body.materialType||
         !request.body.colorAndDesign ||
         !request.body.initialquantity ||
-        !request.body.costperunit ||
         !request.body.restockingdate ||
-        !request.body.availablequantity 
+        !request.body.availablequantity|| 
+        !request.body.costperunit 
       ){
         return response.status(400).send({
           message: 'send all required fields',
@@ -25,9 +25,10 @@ router.post('/', async (request,response) => {
         materialType: request.body.materialType,
         colorAndDesign: request.body.colorAndDesign,
         initialquantity: request.body.initialquantity,
-        costperunit: request.body.costperunit,
+        
         restockingdate: request.body.restockingdate,
-        availablequantity: request.body.availablequantity
+        availablequantity: request.body.availablequantity,
+        costperunit: request.body.costperunit
 
       };
        

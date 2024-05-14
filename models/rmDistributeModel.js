@@ -6,10 +6,6 @@ const rmDistributeSchema = mongoose.Schema(
             type : String,
             required : true,
         },
-        Date: {
-            type: Date,
-            required: true,
-        },
         LineNumber: {
             type: String,
             required: true,
